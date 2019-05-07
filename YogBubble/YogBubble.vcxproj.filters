@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\yog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\yogwindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\D3DTools.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\d12x.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\logger\ConsoleLogger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\LoggerFactory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\logger\Logger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\helper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\IYog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Manager\IYogManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Module\IModuleLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Module\IYogModule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Manager\YogManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\IYogObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Event\IEvent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Module\YogModuleLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Event\EventSystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Event\EventQueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Module\ModuleManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\YogPillar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Manager\Manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\graphic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Config\Config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Config\ConfigManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\ystring.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\YogShader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\IndexBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\constantBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Event\InfoWrapper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\Environment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Graphic\Camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\GFX.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\delegate\IDelegate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\Timer\Timer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\Data\Data.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\ui\imconfig.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\ui\imgui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\ui\imgui_internal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\ui\imstb_rectpack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\ui\imstb_textedit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\ui\imstb_truetype.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\ui\imgui_impl_dx11.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\ui\imgui_impl_win32.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\Model.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Entity\Entity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Component\IComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Entity\TransformComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Graphic\RendererComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\D3DCamera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Graphic\CameraComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Component\IDrawComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Math\Vec3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Entity\IDAssigner.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Component\ComponentSystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\YogDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="YogBubble.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\yog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\yogwindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\D3DTools.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\logger\ConsoleLogger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\LoggerFactory.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\logger\Logger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Manager\YogManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Module\YogModuleLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Event\EventSystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Event\EventQueue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Event\Event.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Module\ModuleManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\YogPillar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Config\ConfigManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\algorithm\sortcpp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\YogShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\IndexBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\constantBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Event\InfoWrapper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\Environment.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Graphic\Camera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\GFX.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\IYog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\Timer\Timer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\Data\Data.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\ui\imgui.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\ui\imgui_draw.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\ui\imgui_widgets.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\ui\imgui_impl_dx11.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\ui\imgui_impl_win32.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\Model.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Entity\Entity.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Component\IComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Graphic\RendererComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\D3DCamera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Graphic\CameraComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Component\IDrawComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Math\Vec3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Entity\IDAssigner.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Component\ComponentSystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Entity\TransformComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="pixel_shader.hlsl" />
+    <FxCompile Include="vertex_shader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

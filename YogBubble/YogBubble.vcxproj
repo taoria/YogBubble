@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\glog.0.3.3.0\build\native\glog.props" Condition="Exists('..\packages\glog.0.3.3.0\build\native\glog.props')" />
+  <Import Project="..\packages\gflags.2.0.1.0\build\native\gflags.props" Condition="Exists('..\packages\gflags.2.0.1.0\build\native\gflags.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{6ED77059-E095-4A09-8260-2D1CBB8BBB7A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>YogBubble</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>D:\YogBuild\</OutDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\YogBubbleResult\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;YOGBUBBLE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy  /S /y  $(ProjectDir)*.h $(OutputPath)include
+xcopy  /S /y  $(OutputPath)*.dll   $(SolutionDir)$(Configuration)
+xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;YOGBUBBLE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;YOGBUBBLE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy  /S /y  $(ProjectDir)*.h $(OutputPath)include
+
+
+
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;YOGBUBBLE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="mods\graphic\Model.h" />
+    <ClInclude Include="mods\ui\imconfig.h" />
+    <ClInclude Include="mods\ui\imgui.h" />
+    <ClInclude Include="mods\ui\imgui_impl_dx11.h" />
+    <ClInclude Include="mods\ui\imgui_impl_win32.h" />
+    <ClInclude Include="mods\ui\imgui_internal.h" />
+    <ClInclude Include="mods\ui\imstb_rectpack.h" />
+    <ClInclude Include="mods\ui\imstb_textedit.h" />
+    <ClInclude Include="mods\ui\imstb_truetype.h" />
+    <ClInclude Include="yogcore\Component\ComponentSystem.h" />
+    <ClInclude Include="yogcore\Component\IDrawComponent.h" />
+    <ClInclude Include="yogcore\Entity\IDAssigner.h" />
+    <ClInclude Include="yogcore\Graphic\CameraComponent.h" />
+    <ClInclude Include="yogcore\Graphic\RendererComponent.h" />
+    <ClInclude Include="tools\Data\Data.h" />
+    <ClInclude Include="tools\delegate\IDelegate.h" />
+    <ClInclude Include="tools\Timer\Timer.h" />
+    <ClInclude Include="yogcore\Component\IComponent.h" />
+    <ClInclude Include="yogcore\Entity\TransformComponent.h" />
+    <ClInclude Include="yogcore\Entity\Entity.h" />
+    <ClInclude Include="yogcore\Graphic\Camera.h" />
+    <ClInclude Include="yogcore\Math\Vec3.h" />
+    <ClInclude Include="yogcore\Event\InfoWrapper.h" />
+    <ClInclude Include="mods\graphic\constantBuffer.h" />
+    <ClInclude Include="mods\graphic\IndexBuffer.h" />
+    <ClInclude Include="mods\graphic\D3DCamera.h" />
+    <ClInclude Include="yogcore\Config\ConfigManager.h" />
+    <ClInclude Include="mods\graphic\graphic.h" />
+    <ClInclude Include="yogcore\Config\Config.h" />
+    <ClInclude Include="yogcore\Manager\Manager.h" />
+    <ClInclude Include="yogcore\Module\ModuleManager.h" />
+    <ClInclude Include="yogcore\Event\EventQueue.h" />
+    <ClInclude Include="yogcore\Event\EventSystem.h" />
+    <ClInclude Include="yogcore\Event\IEvent.h" />
+    <ClInclude Include="yogcore\IYogObject.h" />
+    <ClInclude Include="mods\graphic\YogShader.h" />
+    <ClInclude Include="tools\helper.h" />
+    <ClInclude Include="tools\LoggerFactory.h" />
+    <ClInclude Include="tools\logger\ConsoleLogger.h" />
+    <ClInclude Include="tools\d12x.h" />
+    <ClInclude Include="mods\graphic\Environment.h" />
+    <ClInclude Include="tools\D3DTools.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="tools\logger\Logger.h" />
+    <ClInclude Include="yogcore\IYog.h" />
+    <ClInclude Include="yogcore\Manager\IYogManager.h" />
+    <ClInclude Include="yogcore\Module\IModuleLoader.h" />
+    <ClInclude Include="yogcore\Module\IYogModule.h" />
+    <ClInclude Include="mods\graphic\GFX.h" />
+    <ClInclude Include="yogcore\yog.h" />
+    <ClInclude Include="yogcore\YogDefine.h" />
+    <ClInclude Include="yogcore\yogwindow.h" />
+    <ClInclude Include="yogcore\Manager\YogManager.h" />
+    <ClInclude Include="yogcore\Module\YogModuleLoader.h" />
+    <ClInclude Include="yogcore\YogPillar.h" />
+    <ClInclude Include="yogcore\ystring.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mods\graphic\Model.cpp" />
+    <ClCompile Include="mods\ui\imgui.cpp" />
+    <ClCompile Include="mods\ui\imgui_draw.cpp" />
+    <ClCompile Include="mods\ui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="mods\ui\imgui_impl_win32.cpp" />
+    <ClCompile Include="mods\ui\imgui_widgets.cpp" />
+    <ClCompile Include="yogcore\Component\ComponentSystem.cpp" />
+    <ClCompile Include="yogcore\Component\IDrawComponent.cpp" />
+    <ClCompile Include="yogcore\Entity\IDAssigner.cpp" />
+    <ClCompile Include="yogcore\Entity\TransformComponent.cpp" />
+    <ClCompile Include="yogcore\Graphic\CameraComponent.cpp" />
+    <ClCompile Include="yogcore\Graphic\RendererComponent.cpp" />
+    <ClCompile Include="tools\Data\Data.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="tools\Timer\Timer.cpp" />
+    <ClCompile Include="yogcore\Component\IComponent.cpp" />
+    <ClCompile Include="yogcore\Entity\Entity.cpp" />
+    <ClCompile Include="yogcore\Graphic\Camera.cpp" />
+    <ClCompile Include="yogcore\IYog.cpp" />
+    <ClCompile Include="yogcore\Math\Vec3.cpp" />
+    <ClCompile Include="yogcore\Event\InfoWrapper.cpp" />
+    <ClCompile Include="mods\graphic\constantBuffer.cpp" />
+    <ClCompile Include="mods\graphic\IndexBuffer.cpp" />
+    <ClCompile Include="mods\algorithm\sortcpp.cpp" />
+    <ClCompile Include="mods\graphic\D3DCamera.cpp" />
+    <ClCompile Include="yogcore\Config\ConfigManager.cpp" />
+    <ClCompile Include="yogcore\Module\ModuleManager.cpp" />
+    <ClCompile Include="yogcore\Event\Event.cpp" />
+    <ClCompile Include="yogcore\Event\EventQueue.cpp" />
+    <ClCompile Include="yogcore\Event\EventSystem.cpp" />
+    <ClCompile Include="mods\graphic\YogShader.cpp" />
+    <ClCompile Include="tools\LoggerFactory.cpp" />
+    <ClCompile Include="tools\logger\ConsoleLogger.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\Environment.cpp" />
+    <ClCompile Include="tools\D3DTools.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tools\logger\Logger.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\GFX.cpp" />
+    <ClCompile Include="yogcore\yog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="YogBubble.cpp" />
+    <ClCompile Include="yogcore\yogwindow.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="yogcore\Manager\YogManager.cpp" />
+    <ClCompile Include="yogcore\Module\YogModuleLoader.cpp" />
+    <ClCompile Include="yogcore\YogPillar.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="pixel_shader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="vertex_shader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\directxtk_desktop_2015.2019.2.7.1\build\native\directxtk_desktop_2015.targets" Condition="Exists('..\packages\directxtk_desktop_2015.2019.2.7.1\build\native\directxtk_desktop_2015.targets')" />
+    <Import Project="..\packages\gflags.2.0.1.0\build\native\gflags.targets" Condition="Exists('..\packages\gflags.2.0.1.0\build\native\gflags.targets')" />
+    <Import Project="..\packages\glog.0.3.3.0\build\native\glog.targets" Condition="Exists('..\packages\glog.0.3.3.0\build\native\glog.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\directxtk_desktop_2015.2019.2.7.1\build\native\directxtk_desktop_2015.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_desktop_2015.2019.2.7.1\build\native\directxtk_desktop_2015.targets'))" />
+    <Error Condition="!Exists('..\packages\gflags.2.0.1.0\build\native\gflags.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\gflags.2.0.1.0\build\native\gflags.props'))" />
+    <Error Condition="!Exists('..\packages\gflags.2.0.1.0\build\native\gflags.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\gflags.2.0.1.0\build\native\gflags.targets'))" />
+    <Error Condition="!Exists('..\packages\glog.0.3.3.0\build\native\glog.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glog.0.3.3.0\build\native\glog.props'))" />
+    <Error Condition="!Exists('..\packages\glog.0.3.3.0\build\native\glog.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glog.0.3.3.0\build\native\glog.targets'))" />
+  </Target>
+</Project>
