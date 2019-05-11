@@ -21,7 +21,7 @@ ModuleManager::~ModuleManager(){
 
 }
 
-UINT ModuleManager::GetId() {
+YID ModuleManager::GetId() {
 	return 0;
 }
 

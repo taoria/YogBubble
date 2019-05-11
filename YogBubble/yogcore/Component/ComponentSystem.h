@@ -15,10 +15,12 @@ private:
 	IYog* GetTargetFromId(UINT id) override;
 	bool RegisterTargetByName(std::string name, IYog* target) override;
 public:
-	UINT GetId() override;
+	YID GetId() override;
 	void SetId(YID id) override;
 	std::string GetName() override;
 	void SetName(std::string) override;
 	IComponent* GetComponentOfEntity(Entity* entity, std::string component);
 	bool RegisterTargetOfEntity(Entity* entity, IComponent *com);
+	void CallForUpdate();
+	void CallForInit();
 };

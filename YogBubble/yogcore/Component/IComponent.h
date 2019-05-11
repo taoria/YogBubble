@@ -1,9 +1,9 @@
 #pragma once
 #include "../IYogObject.h"
 #include "../Entity/Entity.h"
-struct IComponent:public IYogObject{
+struct YOG_DLL_EXPORT IComponent:public IYogObject{
 	Entity* GetEntity();
-	UINT GetId() override;
+	YID GetId() override;
 	void SetId(YID id) override;
 	void OnUpdate();
 	std::string GetName() override;
@@ -13,4 +13,5 @@ struct IComponent:public IYogObject{
 	void AttachTo(Entity* entity);
 	IComponent();
 	YID id;
+	Entity* entity;
 };

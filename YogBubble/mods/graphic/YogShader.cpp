@@ -32,7 +32,7 @@ YogPixelShader::~YogPixelShader(){}
 
 void YogPixelShader::InitializeShader(Environment* d3dEnv){
 
-	CompileFromFile(d3dEnv, L"D:\\YogBuild\\pixel_shader.cso");
+	CompileFromFile(d3dEnv, L"E:\\YogBuild\\pixel_shader.cso");
 	// D3D11_INPUT_ELEMENT_DESC layoutDesc[] = {
 	// 	{"POSITION",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA}
 	// };

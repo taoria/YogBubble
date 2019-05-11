@@ -11,7 +11,7 @@ public:
 	void InitModule();
 	void CallUpdate();
 	~ModuleManager();
-	UINT GetId() override;
+	YID GetId() override;
 	void SetId(YID id) override;
 	std::string GetName() override;
 	void SetName(std::string) override;

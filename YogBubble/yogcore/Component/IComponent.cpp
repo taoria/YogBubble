@@ -1,11 +1,12 @@
 #include "IComponent.h"
 #include "../Entity/IDAssigner.h"
+#include "ComponentSystem.h"
 
-Entity* IComponent::GetEntity(){
-	return nullptr;
+Entity* IComponent::GetEntity() {
+	return this->entity;
 }
 
-UINT IComponent::GetId(){
+YID IComponent::GetId(){
 	return 0;
 }
 
@@ -27,6 +28,7 @@ void IComponent::OnRelease(){
 }
 
 void IComponent::AttachTo(Entity* entity){
+	this->entity = entity;
 
 }
 

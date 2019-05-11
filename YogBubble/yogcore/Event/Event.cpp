@@ -1,5 +1,8 @@
 #include "IEvent.h"
 
+IEvent::~IEvent(){
+}
+
 YEvent::YEvent()
 {
 }
@@ -9,7 +12,7 @@ YEvent::YEvent(std::string name) {
 	event_name = event_type + ":" + std::to_string(GetId());
 }
 
-UINT YEvent::GetId() {
+YID YEvent::GetId() {
 	return 0;
 }
 
@@ -36,6 +39,12 @@ std::string YEvent::GetEventType() {
 }
 
 YEvent::~YEvent() {
+	for(auto v:arg_yog_pool){
+		if (v.second->GetName() == "InfoWrapper"){
+			delete v.second;
+		}
+	}
+	arg_yog_pool.clear();
 }
 
 void YEvent::push(std::string name, IYog* object) {
@@ -43,7 +52,7 @@ void YEvent::push(std::string name, IYog* object) {
 }
 
 
-UINT EventTemplate::GetId() {
+YID EventTemplate::GetId() {
 	return 0;
 }
 

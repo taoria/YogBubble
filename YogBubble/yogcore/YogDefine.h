@@ -1,3 +1,3 @@
 #pragma once
-#include <apiquery2.h>
+#include "../stdafx.h"
 typedef UINT64 YID;

@@ -130,34 +130,27 @@ XMVECTOR D3DCamera::forwardVector(){
 }
 
 void D3DCamera::UpdateViewMatrix(){
-	if(initialized==true){
-		UpdateFromEntity();
-	}else{
-		//TO-DO LOG HERE
-	}
 	XMMATRIX camRotationMatrix = XMMatrixRotationRollPitchYaw(rot.x, rot.y, rot.z);
-	XMFLOAT3 Temp(pos.x, pos.y, pos.z);
 	XMVECTOR camTarget = XMVector3TransformCoord(this->DEFAULT_FORWARD_VECTOR, camRotationMatrix);
-
 	camTarget += this->posVector;
-
 	XMVECTOR upDir = XMVector3TransformCoord(this->DEFAULT_UP_VECTOR, camRotationMatrix);
-
 	this->viewMatrix = XMMatrixLookAtLH(this->posVector, camTarget, upDir);
 }
-UINT D3DCamera::GetId() { return 0; }
+
+YID D3DCamera::GetId() { return 0; }
 void D3DCamera::SetId(YID id){}
 std::string D3DCamera::GetName() { return "Camera"; }
 void D3DCamera::SetName(std::string){}
 void D3DCamera::OnInit(){}
 void D3DCamera::OnRelease(){}
 void D3DCamera::UpdateFromEntity(){
-	const Vec3 vec3 = cameraEntity->GetRotation();
-	const Vec3 pos3 = cameraEntity->GetPosition();
+	Vec3 vec3 = cameraEntity->GetRotation();
+	Vec3 pos3 = cameraEntity->GetPosition();
 	pos = static_cast<XMFLOAT3>(pos3);
 	rot = static_cast<XMFLOAT3>(vec3);
 	this->rotVector = XMLoadFloat3(&this->rot);
 	this->posVector = XMLoadFloat3(&this->pos);
+	UpdateViewMatrix();
 }
 
 void D3DCamera::Initialize(Entity* cameraEntity){

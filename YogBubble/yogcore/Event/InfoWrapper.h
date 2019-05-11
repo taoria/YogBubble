@@ -12,7 +12,7 @@ public:
 	InfoWrapper(T data);
 	~InfoWrapper();
 	T GetData();
-	UINT GetId() override;
+	YID GetId() override;
 	void SetId(YID id) override;
 	std::string GetName() override;
 	void SetName(std::string) override;
@@ -34,14 +34,14 @@ template <class T>
 T InfoWrapper<T>::GetData() { return data; }
 
 template <class T>
-UINT InfoWrapper<T>::GetId() { return 0; }
+YID InfoWrapper<T>::GetId() { return 0; }
 
 template <class T>
 void InfoWrapper<T>::SetId(YID id){}
 
 template <class T>
 std::string InfoWrapper<T>::GetName(){
-	return "wrapper";
+	return "InfoWrapper";
 }
 
 template <class T>
@@ -54,7 +54,7 @@ InfoWrapper<T>& InfoWrapper<T>::operator=(T& object){
 }
 template<class T>
 T GetWrappedInfo(IEvent* iEvent, std::string key){
-	InfoWrapper<T>* result = dynamic_cast<InfoWrapper<T>*>(iEvent->GetArg("key code"));
+	InfoWrapper<T>* result = dynamic_cast<InfoWrapper<T>*>(iEvent->GetArg(key));
 	return result->GetData();
 }
 template<class T>

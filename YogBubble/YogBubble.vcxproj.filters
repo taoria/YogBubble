@@ -150,9 +150,6 @@
     <ClInclude Include="mods\ui\imgui_impl_win32.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="mods\graphic\Model.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="yogcore\Entity\Entity.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -160,9 +157,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="yogcore\Entity\TransformComponent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="yogcore\Graphic\RendererComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="mods\graphic\D3DCamera.h">
@@ -184,6 +178,24 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="yogcore\YogDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\VertexBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\YogModel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Entity\GameEntity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Graphic\ModelComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Graphic\RendererData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\Data\Input.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -287,16 +299,10 @@
     <ClCompile Include="mods\ui\imgui_impl_win32.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="mods\graphic\Model.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="yogcore\Entity\Entity.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="yogcore\Component\IComponent.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="yogcore\Graphic\RendererComponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="mods\graphic\D3DCamera.cpp">
@@ -318,6 +324,27 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="yogcore\Entity\TransformComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\helper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\VertexBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\YogModel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Entity\GameEntity.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Graphic\ModelComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Graphic\RendererData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\Data\Input.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

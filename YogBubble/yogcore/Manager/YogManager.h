@@ -14,7 +14,7 @@ protected:
 public:
 	YogManager();
 	~YogManager();
-	UINT GetId() override;
+	YID GetId() override;
 	std::string GetName() override;
 
 	void SetId(YID id) override;

@@ -1,11 +1,6 @@
 #pragma once
 #include"../../stdafx.h"
 #include "../../tools/helper.h"
-#include <minwinbase.h>
-
-#include "graphic.h"
-
-
 template<class T>
 class ConstantBuffer
 {

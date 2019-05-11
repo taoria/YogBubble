@@ -19,3 +19,6 @@ struct Vertex2 {
 struct VS_CB_DATA{
 	XMMATRIX mat;
 };
+struct PS_CB_DATA{
+	float alpha = 1.0f;
+};

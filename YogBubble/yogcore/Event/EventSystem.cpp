@@ -6,6 +6,7 @@
 #include "EventQueue.h"
 #include "InfoWrapper.h"
 #include "../../tools/Data/Data.h"
+#include "../../tools/Data/Input.h"
 EventSystem* EventSystem::event_system = nullptr;
 void OnModuleInitialized(IEvent* i_yog) {
 	// IYogModule* mod = dynamic_cast<IYogModule*>(i_yog->GetArg("module"));
@@ -15,6 +16,13 @@ void OnModuleInitialized(IEvent* i_yog) {
 }
 void OnKeyDown(IEvent* key_down) {
 	ConsoleLogger::get_instance()->log("a key is down", YOG_INFO);
+	KeyCode keyCode = GetWrappedInfo<UINT>(key_down, "key code");
+	Input::KeyDown(keyCode);
+}
+void OnKeyUp(IEvent* arg){
+	ConsoleLogger::get_instance()->log("a key is up", YOG_INFO);
+	KeyCode keyCode = GetWrappedInfo<UINT>(arg, "key code");
+	Input::KeyUp(keyCode);
 }
 void OnRender(IEvent* render) {
 	IYogManager* manager = dynamic_cast<IYogManager*>(get_manager("module manager"));
@@ -36,12 +44,34 @@ void EventSystem::assign(IEvent* arg) {
 void OnMouseWheel(IEvent* arg){
 	
 }
+void OnRightButtonDown(IEvent* arg){
+	Input::MouseRightPressed = true;
+}
+void OnRightButtonUp(IEvent* arg) {
+	Input::MouseRightPressed = false;
+}
+void OnMouseMove(IEvent* arg) {
+	Input::MousePosition = GetWrappedInfo<Vec3>(arg, "data");
+}
+void OnMouseWheeling(IEvent* arg){
+	const auto wParam = GetWrappedInfo<WPARAM>(arg, "data");
 
+	const auto zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+
+	Input::MouseDelta = static_cast<float>(zDelta) / 120.0f;
+
+}
 EventSystem::EventSystem(){
 	RegisterEvent("module init", OnModuleInitialized);
 	RegisterEvent("render", OnRender);
 	RegisterEvent("mouse wheel", OnMouseWheel);
 	RegisterEvent("after init", on_init_finished);
+	RegisterEvent("key down", OnKeyDown);
+	RegisterEvent("key up", OnKeyUp);
+	RegisterEvent("mouse right down", OnRightButtonDown);
+	RegisterEvent("mouse right up", OnRightButtonUp);
+	RegisterEvent("mouse move", OnMouseMove);
+	RegisterEvent("mouse wheel", OnMouseWheeling);
 }
 
 
@@ -121,10 +151,10 @@ void EventSystem::HandlingEvent() {
 	Timer timer;
 
 	while(true) {
-		Data::TimerData::deltaTimeEvent = timer.GetMilisecondsElapsed();
+		Data::TimerData::deltaTimeEvent = static_cast<float>(timer.GetMilisecondsElapsed());
 		timer.Restart();
 		while (get_event_queue()->size()>0) {
-			ConsoleLogger::get_instance()->log( "An event is hooked", YOG_INFO);
+		//	ConsoleLogger::get_instance()->log( "An event is hooked", YOG_INFO);
 			IEvent* event = this->get_event_queue()->front();
 			EventTemplate *event_template = static_cast<EventTemplate*>(this->GetTargetFromName(event->GetName()));
 			if (event_template->m_eventHandlerList.size()==0) {
@@ -145,18 +175,20 @@ void EventSystem::HandlingEvent() {
 
 void EventSystem::HandlingEventSingle(){
 	while (get_event_queue()->size() > 0) {
-		ConsoleLogger::get_instance()->log("An event is hooked", YOG_INFO);
-		IEvent* event = this->get_event_queue()->front();
-		EventTemplate *event_template = static_cast<EventTemplate*>(this->GetTargetFromName(event->GetName()));
+	//	ConsoleLogger::get_instance()->log("An event is hooked", YOG_INFO);
+		IEvent* yevent = this->get_event_queue()->front();
+		EventTemplate *event_template = static_cast<EventTemplate*>(this->GetTargetFromName(yevent->GetName()));
 		if (event_template->m_eventHandlerList.size() == 0) {
 			ConsoleLogger::get_instance()->log_format(YOG_ERROR, "Event create failed :event template name %s", GetName().c_str());
 			continue;
 		}
 		else {
 			for (EventHandler v : event_template->m_eventHandlerList) {
-				v(event);
+				v(yevent);
 			}
 		}
+		
+		delete yevent;
 		get_event_queue()->pop();
 	}
 }
@@ -167,7 +199,7 @@ IEvent* EventSystem::create_event(std::string event_name) {
 	return dynamic_cast<IEvent*>(temp);
 }
 
-UINT EventSystem::GetId() {
+YID EventSystem::GetId() {
 	return 0;
 }
 

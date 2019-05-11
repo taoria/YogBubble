@@ -11,9 +11,9 @@ void Camera::CameraAttatchedToGraphicCamera(D3DCamera* yogCamera){
 }
 
 
-void Camera::GetCamera(){
+void Camera::SetMainCamera(){
 	IYogManager*  i_manager = get_manager("module manager");
-	GFX*  gfx= dynamic_cast<GFX*>(i_manager->GetTargetFromName("renderer"));
+	GFX*  gfx = dynamic_cast<GFX*>(i_manager->GetTargetFromName("renderer"));
 	CameraAttatchedToGraphicCamera(gfx->GetGfxCamera());
 }
 
@@ -25,7 +25,8 @@ Camera::Camera(){
 	AddComponent<TransformComponent>();
 	AddComponent<CameraComponent>();
 }
-UINT Camera::GetId() { return 0; }
+
+YID Camera::GetId() { return 0; }
 
 void Camera::SetId(YID id){}
 std::string Camera::GetName() { return "camera"; }

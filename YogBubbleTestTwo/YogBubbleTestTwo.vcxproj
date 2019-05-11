@@ -70,10 +70,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\YogBuild\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\YogBuild;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\YogBuild\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\YogBuild;$(LibraryPath)</LibraryPath>
     <TargetName>YogGame</TargetName>
-    <OutDir>D:\YogBuild\</OutDir>
+    <OutDir>E:\YogBuild\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\Users\taoria\source\repos\YogBubble\YogBubbleResult\include;$(IncludePath)</IncludePath>
@@ -138,10 +138,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\YogBubbleTest\YogBubbleTest.cpp" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ClCompile Include="YogBubbleTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

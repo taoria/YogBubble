@@ -5,7 +5,7 @@
 #include "../Component/ComponentSystem.h"
 #include "TransformComponent.h"
 
-UINT Entity::GetId(){
+YID Entity::GetId(){
 	return id;
 }
 

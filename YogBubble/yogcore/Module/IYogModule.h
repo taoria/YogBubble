@@ -7,7 +7,7 @@ interface  YOG_DLL_EXPORT IYogModule:public IYogObject{
 	virtual void OnModuleInit()=0;
 	virtual void OnModuleUpdate()=0;
 	virtual void OnModuleRelease()=0;
-	UINT GetId() override;
+	YID GetId() override;
 	void SetId(YID id) override;
 	std::string GetName() override;
 	void SetName(std::string) override;
@@ -16,7 +16,7 @@ interface  YOG_DLL_EXPORT IYogModule:public IYogObject{
 	//virtual IYog& operator = (IYog& i_yog);
 };
 
-inline UINT IYogModule::GetId() {
+inline YID IYogModule::GetId() {
 	return 0;
 }
 

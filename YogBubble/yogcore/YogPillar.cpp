@@ -49,7 +49,7 @@ void YogPillar::MainThread() {
 		timer.Restart();
 		ModuleManager *module_manager = dynamic_cast<ModuleManager*>(get_manager_by_name("module manager"));
 		auto event_system = dynamic_cast<EventSystem*>(get_manager_by_name("event system"));
-
+		EMIT("on update");
 		//接收事件
 		event_system->HandlingEventSingle();
 		module_manager->CallUpdate();

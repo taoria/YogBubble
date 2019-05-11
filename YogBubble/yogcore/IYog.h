@@ -1,19 +1,13 @@
 #pragma once
-#include "../stdafx.h"
 #include <string>
 #include "YogDefine.h"
+#include "../stdafx.h"
 struct IEvent;
-interface  __declspec(dllexport) IYog{
-public:
+struct  YOG_DLL_EXPORT IYog {
 	virtual ~IYog() = default;
-	virtual UINT GetId()=0;
+	virtual YID GetId() = 0;
 	virtual void SetId(YID id) = 0;
-	virtual std::string GetName()=0;
+	virtual std::string GetName() = 0;
 	virtual void SetName(std::string) = 0;
-
 };
-
-
-	
-
 typedef void (IYog::*YogEventHandler)(IEvent* event);

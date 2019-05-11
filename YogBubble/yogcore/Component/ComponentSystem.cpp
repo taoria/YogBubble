@@ -1,6 +1,22 @@
 ﻿#include "ComponentSystem.h"
 #include "IComponent.h"
 
+IYog* ComponentSystem::GetTargetFromName(std::string name){
+	return nullptr;
+}
+
+IYog* ComponentSystem::GetTargetFromName(std::wstring name){
+	return nullptr;
+}
+
+bool ComponentSystem::RegisterTargetById(UINT yog_id, IYog* target){
+	return false;
+}
+
+IYog* ComponentSystem::GetTargetFromId(UINT id){
+	return nullptr;
+}
+
 bool ComponentSystem::RegisterTargetByName(std::string name, IYog* target){
 
 	return false;
@@ -8,10 +24,26 @@ bool ComponentSystem::RegisterTargetByName(std::string name, IYog* target){
 
 }
 
+YID ComponentSystem::GetId(){
+	return 0;
+}
+
+void ComponentSystem::SetId(YID id){
+	
+}
+
+std::string ComponentSystem::GetName(){
+	return "component system";
+}
+
+void ComponentSystem::SetName(std::string){
+	
+}
+
 IComponent* ComponentSystem::GetComponentOfEntity(Entity* entity, std::string component){
-	char buffer[17];
-	sprintf(buffer, "%d", entity->GetId());
-	std::string str =component + buffer;
+	char buffer[32];
+	sprintf(buffer, "%I64d", entity->GetId());
+	std::string str =component+buffer;
 	return m_map[str];
 }
 
@@ -20,13 +52,27 @@ bool ComponentSystem::RegisterTargetOfEntity(Entity* entity, IComponent* com){
 		return false;
 	}
 	try {
-		char buffer[17];
-		sprintf(buffer, "%d", com->GetEntity()->GetId());
-		std::string str = com->GetName() + buffer;
+		char buffer[32];
+		com->AttachTo(entity);
+		sprintf(buffer, "%I64d", com->GetEntity()->GetId());
+
+		std::string str = "class "+com->GetName() + buffer;
 		m_map[str] = com;
 	}
 	catch (...) {
 
 	}
+	com->OnInit();
 	return true;
+}
+
+void ComponentSystem::CallForUpdate(){
+	for(auto cp :m_map ){
+		cp.second->OnUpdate();
+	}
+}
+void ComponentSystem::CallForInit(){
+	for (auto cp : m_map) {
+		cp.second->OnInit();
+	}
 }

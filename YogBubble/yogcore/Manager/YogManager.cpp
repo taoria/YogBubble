@@ -3,6 +3,7 @@
 #include "../Module/ModuleManager.h"
 #include "../Event/EventSystem.h"
 #include "../Config/ConfigManager.h"
+#include "../Component/ComponentSystem.h"
 
 YogManager* YogManager::yog_manager_ = nullptr;
 YogManager::YogManager(){
@@ -14,7 +15,7 @@ YogManager::~YogManager()
 {
 }
 
-UINT YogManager::GetId() {
+YID YogManager::GetId() {
 	return 0;
 }
 
@@ -36,6 +37,8 @@ void YogManager::OnInit() {
 	RegisterTargetByName("top manager", this);
 	RegisterTargetByName("module manager", module_manager);
 	RegisterTargetByName("event system", event_system);
+	IYogManager* component_system = new ComponentSystem;
+	RegisterTargetByName("component system",component_system);
 	RegisterTargetByName("config manager", new ConfigManager);
 }
 

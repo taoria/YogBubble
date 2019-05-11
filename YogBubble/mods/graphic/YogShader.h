@@ -1,10 +1,11 @@
 #pragma once
 #include <string>
+#include "../../stdafx.h"
 #include "../../yogcore/IYogObject.h"
 class Environment;
 class YogShader:public IYogObject{
 public:
-	UINT GetId() override { return 0; }
+	YID GetId() override { return 0; }
 
 	void SetId(YID id) override { };
 	std::string GetName() override { return "shader"; };

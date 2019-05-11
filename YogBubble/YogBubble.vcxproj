@@ -75,7 +75,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>D:\YogBuild\</OutDir>
+    <OutDir>E:\YogBuild\</OutDir>
     <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -166,7 +166,8 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="mods\graphic\Model.h" />
+    <ClInclude Include="mods\graphic\YogModel.h" />
+    <ClInclude Include="mods\graphic\VertexBuffer.h" />
     <ClInclude Include="mods\ui\imconfig.h" />
     <ClInclude Include="mods\ui\imgui.h" />
     <ClInclude Include="mods\ui\imgui_impl_dx11.h" />
@@ -175,11 +176,14 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
     <ClInclude Include="mods\ui\imstb_rectpack.h" />
     <ClInclude Include="mods\ui\imstb_textedit.h" />
     <ClInclude Include="mods\ui\imstb_truetype.h" />
+    <ClInclude Include="tools\Data\Input.h" />
     <ClInclude Include="yogcore\Component\ComponentSystem.h" />
     <ClInclude Include="yogcore\Component\IDrawComponent.h" />
+    <ClInclude Include="yogcore\Entity\GameEntity.h" />
     <ClInclude Include="yogcore\Entity\IDAssigner.h" />
     <ClInclude Include="yogcore\Graphic\CameraComponent.h" />
-    <ClInclude Include="yogcore\Graphic\RendererComponent.h" />
+    <ClInclude Include="yogcore\Graphic\ModelComponent.h" />
+    <ClInclude Include="yogcore\Graphic\RendererData.h" />
     <ClInclude Include="tools\Data\Data.h" />
     <ClInclude Include="tools\delegate\IDelegate.h" />
     <ClInclude Include="tools\Timer\Timer.h" />
@@ -225,18 +229,23 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
     <ClInclude Include="yogcore\ystring.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mods\graphic\Model.cpp" />
+    <ClCompile Include="mods\graphic\YogModel.cpp" />
+    <ClCompile Include="mods\graphic\VertexBuffer.cpp" />
     <ClCompile Include="mods\ui\imgui.cpp" />
     <ClCompile Include="mods\ui\imgui_draw.cpp" />
     <ClCompile Include="mods\ui\imgui_impl_dx11.cpp" />
     <ClCompile Include="mods\ui\imgui_impl_win32.cpp" />
     <ClCompile Include="mods\ui\imgui_widgets.cpp" />
+    <ClCompile Include="tools\Data\Input.cpp" />
+    <ClCompile Include="tools\helper.cpp" />
     <ClCompile Include="yogcore\Component\ComponentSystem.cpp" />
     <ClCompile Include="yogcore\Component\IDrawComponent.cpp" />
+    <ClCompile Include="yogcore\Entity\GameEntity.cpp" />
     <ClCompile Include="yogcore\Entity\IDAssigner.cpp" />
     <ClCompile Include="yogcore\Entity\TransformComponent.cpp" />
     <ClCompile Include="yogcore\Graphic\CameraComponent.cpp" />
-    <ClCompile Include="yogcore\Graphic\RendererComponent.cpp" />
+    <ClCompile Include="yogcore\Graphic\ModelComponent.cpp" />
+    <ClCompile Include="yogcore\Graphic\RendererData.cpp" />
     <ClCompile Include="tools\Data\Data.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../stdafx.h</PrecompiledHeaderFile>

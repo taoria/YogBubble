@@ -5,27 +5,31 @@
 #include "../../tools/d12x.h"
 #include "YogShader.h"
 #include <SpriteBatch.h>
-#include <WICTextureLoader.h>
 #include "IndexBuffer.h"
 #include "constantBuffer.h"
 #include "graphic.h"
 #include "D3DCamera.h"
+#include "VertexBuffer.h"
+#include "YogModel.h"
+
+//#include "VertexBuffer.h"
 
 class __declspec(dllexport) Environment : public IYogModule
 {
 public:
 	YogVertexShader* m_yogVertexShader;
 	YogPixelShader* m_yogPixelShader;
-	ComPtr<ID3D11Buffer> m_vertexBuffer;
-	ComPtr<ID3D11Buffer> m_vertexBuffer2;
-	IndexBuffer indexBuffer;
-	ConstantBuffer<VS_CB_DATA> constantBuffer;
+	std::vector<YogModel*> yogModels;
+	ConstantBuffer<VS_CB_DATA> vs_cb_data;
+	ConstantBuffer<PS_CB_DATA> ps_cb_data;
 	ComPtr<ID3D11RasterizerState> m_rasterizerState;
 	std::unique_ptr<SpriteBatch> spriteBatch;
 	std::unique_ptr<SpriteFont> spriteFont;
 	D3DCamera camera;
-	void DrawTestScene();
-	void TestScene();
+	ComPtr<ID3D11Device> m_device;
+	ComPtr<ID3D11DeviceContext> m_deviceContext;
+	ComPtr<ID3D11ShaderResourceView> myTexture;
+	ComPtr<ID3D11ShaderResourceView> demoTexture;
 	void InitDebugController();
 	float width;
 	float height;
@@ -43,7 +47,7 @@ public:
 	ComPtr<IDXGISwapChain> GetSwapChain();
 	
 	ComPtr<ID3D11Device> GetDirectDevice();
-	UINT GetId() override;
+	YID GetId() override;
 	std::string GetName() override;
 	void env_end();
 	void env_start();
@@ -90,15 +94,15 @@ protected:
 	int m_videoCardMemory;
 	char m_videoCardDescription[128];
 	ComPtr<IDXGISwapChain> m_swapChain;
-	ComPtr<ID3D11Device> m_device;
-	ComPtr<ID3D11DeviceContext> m_deviceContext;
+
 	ComPtr<ID3D11RenderTargetView> m_renderTargetView;
 	ComPtr<ID3D11Texture2D> m_depthStencilBuffer;
 	ComPtr<ID3D11DepthStencilState> m_depthStencilState;
 	ComPtr<ID3D11DepthStencilView> m_depthStencilView;
 	ComPtr<ID3D11RasterizerState> m_rasterState;
 	ComPtr<ID3D11SamplerState> m_samplerState;
-	ComPtr<ID3D11ShaderResourceView> myTexture;
+
+	ComPtr<ID3D11BlendState> m_blendState;
 	bool InitializeShader();
 	ComPtr<ID3D10Blob> m_vertexShader;
 	std::vector<ComPtr<IDXGIAdapter>> adapters;

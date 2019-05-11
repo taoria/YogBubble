@@ -14,8 +14,12 @@ public:
 	D3DCamera* GetGfxCamera();
 	void ResolveModuleDependency() override;
 	void OnModuleInit() override;
+	void OnModuleUpdateLogic();
 	void OnModuleUpdate() override;
 	void OnModuleRelease() override;
+#ifdef _DEBUG
+	
+#endif
 protected:
 	Environment* env;
 };

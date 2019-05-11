@@ -8,6 +8,7 @@ interface  YOG_DLL_EXPORT IEvent:public IYog{
 	virtual std::string GetEventType()= 0;
 	virtual IYog* GetArg(std::string str) = 0;
 	virtual void push(std::string name, IYog* object) = 0;
+	virtual ~IEvent() ;
 };
 
 class YOG_DLL_EXPORT YEvent:public IEvent {
@@ -19,7 +20,7 @@ public:
 	YEvent();
 	YEvent(std::string name);
 	~YEvent();
-	UINT GetId() override;
+	YID GetId() override;
 	void SetId(YID id) override;
 
 	std::string GetName() override;
@@ -36,7 +37,7 @@ public:
 	EventHandler temp_event_handler;
 	std::vector<EventHandler> m_eventHandlerList;
 
-	UINT GetId() override;
+	YID GetId() override;
 	void SetId(YID id) override;
 	std::string GetName() override;
 	void SetName(std::string) override;

@@ -1,8 +1,11 @@
 #pragma once
 #include "../../stdafx.h"
+#include "constantBuffer.h"
+
+
 class IndexBuffer{
 private:
-	ComPtr<ID3D11Buffer> buffer;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
 	UINT  bufferSize = 0;
 public:
 	IndexBuffer();

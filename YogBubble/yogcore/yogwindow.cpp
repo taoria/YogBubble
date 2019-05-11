@@ -5,7 +5,7 @@
 #include "Manager/YogManager.h"
 #include "Event/EventSystem.h"
 #include "Event/InfoWrapper.h"
-
+#include "Math/Vec3.h"
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 	// Forward hwnd on because we can get messages (e.g., WM_CREATE)
 	// before CreateWindow returns, and thus before mhMainWnd is valid.
@@ -100,11 +100,68 @@ LRESULT YogWindow::msg_proc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 		EMIT_M("key down", "key code" ,params);
 		break;
 	}
+	case WM_KEYUP:{
+		InfoWrapper<UINT>* params = new InfoWrapper<UINT>(wParam);
+		EMIT_M("key up", "key code", params);
+		break;
+	}
 	case WM_MOUSEWHEEL:{
 		InfoWrapper<UINT>* params = new InfoWrapper<UINT>(wParam);
 		EMIT_M("mouse wheel", "data", params);
 		break;
 	}
+	case WM_MOUSEMOVE:
+		{
+		int x = LOWORD(lParam);
+		int y = HIWORD(lParam);
+		Vec3 *vec = new Vec3(x, y, 0);
+		InfoWrapper<Vec3>* params = new InfoWrapper<Vec3>(*vec);
+		EMIT_M("mouse move", "data", params);
+		break;
+		}
+	case WM_LBUTTONDOWN:
+		{
+		int x = LOWORD(lParam);
+		int y = HIWORD(lParam);
+		POINT p = { x,y };
+	//	ScreenToClient(hwnd, &p);
+		Vec3 *vec = new Vec3(static_cast<float>(p.x),static_cast<float>( p.y), 0);
+		InfoWrapper<Vec3>* params = new InfoWrapper<Vec3>(*vec);
+		EMIT_M("mouse left down", "data", params);
+		break;
+		}
+	case WM_LBUTTONUP:
+		{
+		int x = LOWORD(lParam);
+		int y = HIWORD(lParam);
+		POINT p = { x,y };
+	//	ScreenToClient(hwnd, &p);
+		Vec3 *vec = new Vec3(static_cast<float>(p.x), static_cast<float>(p.y), 0);
+		InfoWrapper<Vec3>* params = new InfoWrapper<Vec3>(*vec);
+		EMIT_M("mouse left up", "data", params);
+		break;
+		}
+	case WM_RBUTTONDOWN:
+		{
+		int x = LOWORD(lParam);
+		int y = HIWORD(lParam);
+		POINT p = { x,y };
+	//	ScreenToClient(hwnd, &p);
+		Vec3 *vec = new Vec3(static_cast<float>(p.x), static_cast<float>(p.y), 0);
+		InfoWrapper<Vec3>* params = new InfoWrapper<Vec3>(*vec);
+		EMIT_M("mouse right down", "data", params);
+		break;
+		}
+	case WM_RBUTTONUP:
+		{
+		int x = LOWORD(lParam);
+		int y = HIWORD(lParam);
+		POINT p = { x,y };
+		Vec3 *vec = new Vec3(static_cast<float>(p.x), static_cast<float>(p.y), 0);
+		InfoWrapper<Vec3>* params = new InfoWrapper<Vec3>(*vec);
+		EMIT_M("mouse right up", "data", params);
+		break;
+		}
 	case WM_PAINT: {
 		IYogManager* manager = get_manager("module manager");
 		IYogModule* render_module = dynamic_cast<IYogModule*>(manager->GetTargetFromName("renderer"));

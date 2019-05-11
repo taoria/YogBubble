@@ -11,7 +11,7 @@ protected:
 	void SetId(YID id) override;
 	YID id;
 public:
-	UINT GetId() override;
+	YID GetId() override;
 	std::string GetName() override;
 	void SetName(std::string) override;
 	void OnInit() override;
@@ -21,7 +21,7 @@ public:
 	IComponent* GetComponent(std::string name);
 	template<typename T>
 	T* GetComponent();
-
+	bool transformUpdate = true;
 	void AddComponent(IComponent *component);
 	template<typename T>
 	void AddComponent();
@@ -34,7 +34,6 @@ public:
 template <typename T>
 T* Entity::GetComponent(){
 	std::string str = typeid(T).name();
-
 	T* res = reinterpret_cast<T*>(GetComponent(str));
 	if(res==nullptr){
 		LOG_F(YOG_ERROR, "no such Component %s in Entity %d", str.c_str(), this->GetId());
@@ -44,7 +43,6 @@ T* Entity::GetComponent(){
 
 template <typename T>
 void Entity::AddComponent(){
-	std::string str = typeid(T).name();
 	T* res = new T;
 	AddComponent(res);
 }

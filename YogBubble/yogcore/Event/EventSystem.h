@@ -27,7 +27,7 @@ public:
 	virtual void HandlingEvent();
 	virtual void HandlingEventSingle();
 	virtual IEvent* create_event(std::string event_name);
-	UINT GetId() override;
+	YID GetId() override;
 	void SetId(YID id) override;
 	std::string GetName() override;
 	void SetName(std::string) override;

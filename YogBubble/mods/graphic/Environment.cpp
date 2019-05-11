@@ -15,59 +15,6 @@ void ThrowIfFailed(HRESULT create_dxgi_factory){
 	}
 }
 
-void Environment::DrawTestScene(){
-
-	UINT stride = sizeof(Dot);
-	UINT offset = 0;
-
-	this->m_deviceContext->IASetVertexBuffers(0, 1, this->m_vertexBuffer.GetAddressOf(), &stride, &offset);
-	this->m_deviceContext->IASetIndexBuffer(this->indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
-	this->m_deviceContext->IASetVertexBuffers(0, 1, this->m_vertexBuffer.GetAddressOf(), &stride, &offset);
-	this->m_deviceContext->DrawIndexed(this->indexBuffer.BufferSize(),0,0);
-
-
-
-	
-}
-void Environment::TestScene(){
-// 	Vertex triangleVertices[] = {
-// 	{ { 0.0f, 0.25f , 1.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },
-// 	{ { 0.25f, -0.25f , 1.0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
-// 	{ { -0.25f, -0.25f, 1.0f }, { 0.0f, 0.0f, 1.0f, 1.0f } },
-// { { 0.0f, 0.1f , .0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
-// { { 0.1f, -0.1f , .0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
-// { { -0.1f, -0.1f, .0f }, { 0.0f, 1.0f, 0.0f, 1.0f } }
-// 	};
-	Dot v[] ={
-		Dot{{-0.5f,-0.5f,0},{0.0f,1.0f}}, //Bottom left
-		Dot{{-0.5f,0.5f,0},{0.0f,0.0f}}, //Top left
-		Dot{{0.5f,0.5f,0},{1.0f,0.0f}}, //Top Right
-		Dot{{0.5f,-0.5f,0},{1.0f,1.0f}} //bottom right
-	};
-	DWORD indices[] = {
-		0,1,2,
-		0,2,3
-	};
-	D3D11_BUFFER_DESC vertexBufferDesc = {};
-	vertexBufferDesc.ByteWidth = (sizeof(Dot))*(ARRAYSIZE(v));
-	vertexBufferDesc.CPUAccessFlags = 0;
-	vertexBufferDesc.MiscFlags = 0;
-	vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	D3D11_SUBRESOURCE_DATA vertexBufferData = {};
-	vertexBufferData.pSysMem = v;
-	HRESULT hr = this->m_device->CreateBuffer(&vertexBufferDesc, &vertexBufferData,this->m_vertexBuffer.GetAddressOf());
-	if(FAILED(hr)){
-		YogDebugger::DebugError(hr);
-	}
-
-	hr = this->indexBuffer.Initialize(m_device.Get(), indices, ARRAYSIZE(indices));
-//	hr = this->m_device->CreateBuffer(&vertexBufferDesc, &vertexBufferData2, this->m_vertexBuffer2.GetAddressOf());
-	if (FAILED(hr)) {
-		YogDebugger::DebugError(hr);
-	}
-
-
-}
 
 void Environment::InitDebugController(){
 
@@ -128,7 +75,6 @@ bool Environment::InitializeShader(){
 	m_yogVertexShader->InitializeShader(this);
 	m_yogPixelShader = new YogPixelShader;
 	m_yogPixelShader->InitializeShader(this);
-	TestScene();
 	return true;
 }
 
@@ -183,10 +129,10 @@ void Environment::InitializeD3DEnv(HWND h_window){
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 	swapChainDesc.SampleDesc.Count = 1;
-	swapChainDesc.BufferDesc.Height = this->height;
-	swapChainDesc.BufferDesc.Width = this->width;
+	swapChainDesc.BufferDesc.Height = static_cast<UINT>(this->height);
+	swapChainDesc.BufferDesc.Width = static_cast<UINT>(this->width);
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
-	swapChainDesc.BufferDesc.RefreshRate.Numerator = 60;
+	swapChainDesc.BufferDesc.RefreshRate.Numerator = 120;
 	swapChainDesc.SampleDesc.Quality = 0;
 	swapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
 	swapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
@@ -241,8 +187,8 @@ void Environment::InitializeD3DEnv(HWND h_window){
 
 	D3D11_TEXTURE2D_DESC depthStencilDesc ;
 	ZeroMemory(&depthStencilDesc, sizeof(depthStencilDesc));
-	depthStencilDesc.Width = width;
-	depthStencilDesc.Height = height;
+	depthStencilDesc.Width = static_cast<UINT>(width);
+	depthStencilDesc.Height = static_cast<UINT>(height);
 	depthStencilDesc.MipLevels = 1;
 	depthStencilDesc.ArraySize = 1;
 	depthStencilDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -271,20 +217,41 @@ void Environment::InitializeD3DEnv(HWND h_window){
 	hr = m_device->CreateDepthStencilState(&depthStencilStateDesc,this->m_depthStencilState.GetAddressOf());
 
 	spriteBatch = std::make_unique<SpriteBatch>(m_deviceContext.Get());
-	spriteFont = std::make_unique<SpriteFont>(m_device.Get(), L"D:\\YogBuild\\brush_script_mt.spritefont");
+	spriteFont = std::make_unique<SpriteFont>(m_device.Get(), L"E:\\YogBuild\\brush_script_mt.spritefont");
 
 	InitializeSamplerState();
 
-	hr = CreateWICTextureFromFile(this->m_device.Get(), L"D:\\YogBuild\\test.png", nullptr, this->myTexture.GetAddressOf());
+	hr = CreateWICTextureFromFile(this->m_device.Get(), L"E:\\YogBuild\\test.png", nullptr, this->myTexture.GetAddressOf());
 	if(FAILED(hr)){
 		LOG_F(YOG_ERROR, "Failed to load resources %s error code  %X", "test.png", hr);
 		return;
 	}
-
-	constantBuffer.Initialize(m_device.Get(), m_deviceContext.Get());
-
+	hr = CreateWICTextureFromFile(this->m_device.Get(), L"E:\\YogBuild\\grass.png", nullptr, this->demoTexture.GetAddressOf());
+	if (FAILED(hr)) {
+		LOG_F(YOG_ERROR, "Failed to load resources %s error code  %X", "grass.png", hr);
+		return;
+	}
+	vs_cb_data.Initialize(m_device.Get(), m_deviceContext.Get());
+	ps_cb_data.Initialize(m_device.Get(), m_deviceContext.Get());
 	camera.SetPosition(0, 0, -2);
-	camera.SetProjectionValues(90.0f, width / height, 0.1, 1000);
+	camera.SetProjectionValues(90.0f, width / height, 0.1f, 1000.0f);
+	D3D11_BLEND_DESC blendDesc = {};
+	D3D11_RENDER_TARGET_BLEND_DESC rtbd = {};
+	rtbd.BlendEnable = true;
+	rtbd.SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	rtbd.DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	rtbd.BlendOp = D3D11_BLEND_OP_ADD;
+	rtbd.SrcBlendAlpha = D3D11_BLEND_ONE;
+	rtbd.DestBlendAlpha =D3D11_BLEND_ZERO;
+	rtbd.BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	rtbd.RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	blendDesc.RenderTarget[0] = rtbd;
+
+	m_device->CreateBlendState(&blendDesc,m_blendState.GetAddressOf());
+	// yogModels.push_back((new YogModel));
+	// if (!yogModels[0]->Initialize(this->m_device.Get(), this->m_deviceContext.Get(), this->demoTexture.Get(), vs_cb_data)){
+	// 	return ;
+	// }
 }
 void Environment::InitializeSamplerState(){
 	HRESULT hr;
@@ -474,7 +441,7 @@ ComPtr<ID3D11Device> Environment::GetDirectDevice(){
 	return this->m_device;
 }
 
-UINT Environment::GetId(){
+YID Environment::GetId(){
 	return 0;
 }
 
@@ -546,14 +513,18 @@ void Environment::env_start(){
 	this->m_deviceContext->RSSetState(m_rasterizerState.Get());
 	this->m_deviceContext->PSSetSamplers(0, 1, m_samplerState.GetAddressOf());
 	this->m_deviceContext->OMSetDepthStencilState(m_depthStencilState.Get(), 0);
-	this->m_deviceContext->PSSetShaderResources(0, 1, this->myTexture.GetAddressOf());
+	this->m_deviceContext->PSSetShaderResources(0, 1, this->demoTexture.GetAddressOf());
+	m_deviceContext->OMSetBlendState(m_blendState.Get(), NULL, 0xFFFFFFFF);
 	XMMATRIX world = XMMatrixIdentity();
-	constantBuffer.data.mat = world * camera.GetViewMatrix()*camera.GetProjectionMatrix();
-	constantBuffer.data.mat = XMMatrixTranspose(constantBuffer.data.mat);
-	constantBuffer.ApplyChanges(m_deviceContext.Get());
-	this->m_deviceContext->VSSetConstantBuffers(0, 1, constantBuffer.GetAddressOf());
-	DrawTestScene();
+	for(auto model : yogModels){
+		model->Draw(camera.GetViewMatrix()*camera.GetProjectionMatrix());
+	}
+	static float alpha =0.5f;
+	this->ps_cb_data.data.alpha = alpha;
 
+
+	ps_cb_data.ApplyChanges(m_deviceContext.Get());
+	this->m_deviceContext->PSSetConstantBuffers(0, 1, ps_cb_data.GetAddressOf());
 	spriteBatch->Begin();
 	spriteFont->DrawString(spriteBatch.get(), L"Yog Engine Version 0.1", XMFLOAT2(0, 0), DirectX::Colors::Aqua, 0.0f);
 	spriteBatch->End();
@@ -563,6 +534,7 @@ void Environment::env_start(){
 	ImGui::NewFrame();
 	ImGui::Begin("Test");
 		ImGui::Text("this is example text");
+		ImGui::DragFloat("Alpha", &alpha,0.1f,0,1);
 	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());

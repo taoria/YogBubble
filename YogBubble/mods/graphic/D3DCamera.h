@@ -34,13 +34,14 @@ public:
 private:
 	void UpdateViewMatrix();
 public:
-	UINT GetId() override;
+	YID GetId() override;
 	void SetId(YID id) override;
 	std::string GetName() override;
 	void SetName(std::string) override;
 	void OnInit() override;
 	void OnRelease() override;
 	void UpdateFromEntity();
+	
 	void Initialize(Entity *cameraEntity);
 private:
 	Entity *cameraEntity;

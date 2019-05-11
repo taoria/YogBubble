@@ -7,10 +7,19 @@ Vec3::Vec3(XMFLOAT3 xmfloat3){
 	y = xmfloat3.y;
 	z = xmfloat3.z;
 }
-Vec3::Vec3(float xx, float yy, float zz):XMFLOAT3(xx,yy,zz){
+
+Vec3::Vec3(XMVECTOR xv){
+	XMFLOAT3 xx;
+	XMStoreFloat3(&xx, xv);
+	x = xx.x;
+	y = xx.y;
+	z = xx.z;
 }
 
-UINT Vec3::GetId() { return 0; }
+Vec3::Vec3(float xx, float yy, float zz):x(xx),y(yy),z(zz){
+}
+
+YID Vec3::GetId() { return 0; }
 
 void Vec3::SetId(YID id){}
 
@@ -21,6 +30,14 @@ Vec3& Vec3::operator=(XMFLOAT3 vec){
 	this->x = vec.x;
 	this->y = vec.y;
 	this->z = vec.z;
+	return *this;
+}
+
+Vec3& Vec3::operator =(XMVECTOR xv)
+{
+	XMFLOAT3 xx;
+	XMStoreFloat3(&xx, xv);
+	(*this) = xx;
 	return *this;
 }
 
@@ -78,6 +95,17 @@ Vec3& Vec3::Norm(){
 		return *(new Vec3(x / div, y / div, z / div));
 	}
 }
+
+Vec3::operator XMFLOAT3(){
+	return {x, y, z};
+}
+
+Vec3::operator union __m128(){
+	XMFLOAT3 v = static_cast<XMFLOAT3>(*this);
+	return XMLoadFloat3(&v);
+
+}
+
 float Vec3::Magnitude() const{
 	return sqrt((x*x + y * y + z * z));
 }
@@ -85,6 +113,7 @@ float Vec3::Magnitude() const{
 
 Vec3::Vec3()
 {
+	x = 0; y = 0; z = 0;
 }
 
 

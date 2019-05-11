@@ -9,7 +9,6 @@ namespace Data{
 	public:
 		static float deltaTime;
 		static float deltaTimeEvent;
-
 	};
 	
 }

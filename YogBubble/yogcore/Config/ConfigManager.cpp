@@ -11,7 +11,7 @@ ConfigManager::~ConfigManager()
 {
 }
 
-UINT ConfigManager::GetId() { return 0; }
+YID ConfigManager::GetId() { return 0; }
 void ConfigManager::SetId(YID id){
 	
 }
