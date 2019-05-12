@@ -22,6 +22,12 @@ Vec3 TransformComponent::GetUp()
 	return vv;
 }
 
+TransformComponent::TransformComponent(){
+	scale.x = 1;
+	scale.y = 1;
+	scale.z = 1;
+}
+
 void TransformComponent::LookAtPos(Vec3 pos){
 	Vec3 lookAtPos = position+GetForward();
 	if (lookAtPos.x == pos.x && lookAtPos.y == pos.y&& lookAtPos.z == pos.z)

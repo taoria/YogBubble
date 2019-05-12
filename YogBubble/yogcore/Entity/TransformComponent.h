@@ -12,5 +12,6 @@ public:
 	Vec3 GetForward();
 	Vec3 GetRight();
 	Vec3 GetUp();
+	TransformComponent();
 	void LookAtPos(Vec3 pos);
 };

@@ -12,9 +12,10 @@
 #include "yogcore/Entity/TransformComponent.h"
 #include "yogcore/Entity/GameEntity.h"
 #include "tools/Data/Input.h"
+#include "yogcore/Resource/ModelManager.h"
+#include "yogcore/Graphic/ModelComponent.h"
 using namespace std;
 #pragma  warning(disable:4996)
-
 #pragma warning(disable:4996) 
  // int CALLBACK WinMain(
 	// HINSTANCE hInstance,
@@ -37,15 +38,25 @@ void OnInit(IEvent* i_event){
 	PanCamera();
 	gameEntity = new GameEntity;
 	gameEntity2 = new GameEntity;
+	TransformComponent *transformComponent = gameEntity->GetComponent<TransformComponent>();
+	transformComponent->scale = Vec3(0.01f, 0.01f, 0.01f);
+
+	//注册资源
+	ModelManager* modeManager = ModelManager::GetInstance();
+	modeManager->RegisterModel("iron man", "E:\\YogBuild\\IronMan.obj");
+	auto com = gameEntity->GetComponent<ModelComponent>();
+	auto com2 = gameEntity2->GetComponent<ModelComponent>();
+	modeManager->AddReference(com, "iron man");
+	modeManager->AddReference(com2, "iron man");
 }
 Vec3 preposition;
 bool mouseDown= false;
 void OnMouseWheeling(IEvent* iEvent){
-	auto wParam  = GetWrappedInfo<WPARAM>(iEvent, "data");
-	auto fwKeys = GET_KEYSTATE_WPARAM(wParam);
-	auto zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
-	TransformComponent *transformComponent = camera.GetComponent<TransformComponent>();
-	transformComponent->position += transformComponent->GetForward()*zDelta*0.0002f;
+	// auto wParam  = GetWrappedInfo<WPARAM>(iEvent, "data");
+	// auto fwKeys = GET_KEYSTATE_WPARAM(wParam);
+	// auto zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+	// TransformComponent *transformComponent = camera.GetComponent<TransformComponent>();
+	// transformComponent->position += transformComponent->GetForward()*zDelta*0.0002f;
 }
 void OnRightButtonDown(IEvent* iEvent){
 	if(mouseDown==false){
@@ -99,6 +110,13 @@ void OnUpdate(IEvent* events){
 	if (Input::KeyCodeDown(KeyCode::RIGHT)) {
 		transformComponent->position += transformComponent->GetRight()*Data::TimerData::deltaTime *cameraSpeed;
 	}
+	if( Input::KeyCodeDown(KeyCode::SPACE)){
+		transformComponent->position += transformComponent->GetUp()*Data::TimerData::deltaTime *cameraSpeed;
+	}
+	if (Input::KeyCodeDown(KeyCode::Z)) {
+		transformComponent->position -= transformComponent->GetUp()*Data::TimerData::deltaTime *cameraSpeed;
+	}
+	
 }
 void RegisterEvent(){
 	EventSystem* eventSystem = dynamic_cast<EventSystem*>(get_manager("event system"));
@@ -108,6 +126,10 @@ void RegisterEvent(){
 	eventSystem->RegisterEvent("mouse wheel", OnMouseWheeling);
 	eventSystem->RegisterEvent("on update", OnUpdate);
 }
+
+void RegisterResource(){
+
+};
 int main(int argc, char **argv) {
 	if(argc){
 		if(argc==3){
@@ -117,6 +139,7 @@ int main(int argc, char **argv) {
 		}
 	}
 	RegisterEvent();
+	RegisterResource();
 	yog* yogs = new yog;
 
 	return 0;

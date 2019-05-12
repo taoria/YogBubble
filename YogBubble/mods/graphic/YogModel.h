@@ -4,29 +4,43 @@
 #include "VertexBuffer.h"
 #include "graphic.h"
 #include "../../yogcore/Entity/Entity.h"
+#include "Mesh.h"
+#include "../../yogcore/Resource/ModelResource.h"
+struct aiMesh;
+struct aiScene;
+struct aiNode;
+
 class YogModel{
 private:
-	VertexBuffer<Dot> vertexBuffer;
 	ID3D11Device* m_device;
 	ID3D11DeviceContext* m_context;
-	ID3D11ShaderResourceView* m_texture;
+	//ID3D11ShaderResourceView* m_texture;
 	XMMATRIX worldMatrix =XMMatrixIdentity();
 	ConstantBuffer<VS_CB_DATA>* m_cbData;;
-	IndexBuffer indexBuffer;
+	std::vector<Mesh> meshes;
 
 public:
 	void UpdateWorldMatrix();
-	void UpdateFromTransform();
+	void UpdateFromTransform(Entity* entity);
+
 	YogModel();
 	~YogModel();
-	Entity *entity = nullptr;
-	bool Initialize(ID3D11Device* device, ID3D11DeviceContext* context, ID3D11ShaderResourceView *texture,ConstantBuffer<VS_CB_DATA> &cb_vs_data);
-	bool Initialize(Environment* environment);
-	void SetTexture(ID3D11ShaderResourceView *m_texture);
+	ModelResource* resource;
+	void ProcessNode(aiNode* const aiNode, const aiScene* pScene);
+	bool LoadModel(const std::string& cs);
+	bool Initialize(const std::string& filepath, ID3D11Device* device, ID3D11DeviceContext* context, ConstantBuffer<VS_CB_DATA> &cb_vs_data);
+	TextureStorageType DetermineTextureStorageType(const aiScene* aiScene, aiMaterial* pMaterial, UINT uint, aiTextureType aiTexture);
+	std::vector<Texture> LoadMaterialTextures(aiMaterial* pMaterial, aiTextureType textureType, const aiScene* aiScene);
+	bool Initialize(Environment* environment,ModelResource* modelResource);
+	//void SetTexture(ID3D11ShaderResourceView *m_texture);
+	Mesh ProcessMesh(const aiMesh* mesh, const aiScene* scene);
+
 	void Draw(const XMMATRIX& viewProjectionMatrix);
 	XMVECTOR posVector;
 	XMVECTOR rotVector;
+	XMVECTOR scaleVector;
 	XMFLOAT3 pos;
 	XMFLOAT3 rot;
+	XMFLOAT3 scale;
 };
 

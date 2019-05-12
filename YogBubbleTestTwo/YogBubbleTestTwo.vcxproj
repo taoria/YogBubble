@@ -79,6 +79,12 @@
     <IncludePath>D:\Users\taoria\source\repos\YogBubble\YogBubbleResult\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Users\taoria\source\repos\YogBubble\YogBubbleResult;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>E:\YogBuild\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\YogBuild;$(LibraryPath)</LibraryPath>
+    <OutDir>E:\YogBuild\</OutDir>
+    <TargetName>YogGame</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -104,6 +110,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>YogBubble.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

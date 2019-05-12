@@ -6,6 +6,7 @@
 #include <comutil.h>  
 #include "../yogcore/Math/Vec3.h"
 #include "../yogcore/yogwindow.h"
+#include <algorithm>
 #pragma comment(lib, "comsuppw.lib")
 
 using Microsoft::WRL::ComPtr;
@@ -47,6 +48,22 @@ namespace YogDebugger {
 	std::string result(w);
 	return result;
 }
+
+std::string YogString::GetDirectoryFromPath(const std::string& filename){
+	size_t off1 = filename.find_last_of('\\');
+	size_t off2 = filename.find_last_of('/');
+	if(off1 == std::string::npos && off2 == std::string::npos){
+		return "";
+	}
+	if(off1==std::string::npos){
+		return filename.substr(0, off2 - 1);
+	}
+	if(off2==std::string::npos){
+		return filename.substr(0, off1 - 1);
+	}
+	return filename.substr(0, std::max(off1, off2) -1);
+}
+
 namespace YogString {
 
 
@@ -58,6 +75,14 @@ namespace YogString {
 		std::string result = pchar;
 		return result;
 	}
+
+	 std::string GetFileExtension(const std::string& filename){
+		 size_t off = filename.find_last_of('.');
+		 if(off== std::string::npos){
+			 return {};
+		 }
+		 return std::string(filename.substr(off + 1));
+	 }
 
 	 std::wstring s2ws(const std::string& s)
 	{

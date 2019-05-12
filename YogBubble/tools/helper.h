@@ -8,31 +8,32 @@
 
 class Vec3;
 
-namespace YogDebugger {
-	 void ThrowIfFailed(HRESULT hr);
-	 void DebugResultInfo(HRESULT hr);
-	 void DebugInfo(std::string str);
-	 void DebugError(HRESULT hr);
-	 void DebugError(std::wstring str);
-	 void DebugError(std::wstring str, HRESULT hr);
-	 void DebugErrorBox(std::wstring str);
-	 void FunctionNotInstalled(std::string info);
-	 void LogInfo(const char* log_format, ...);
+namespace YogDebugger{
+	void ThrowIfFailed(HRESULT hr);
+	void DebugResultInfo(HRESULT hr);
+	void DebugInfo(std::string str);
+	void DebugError(HRESULT hr);
+	void DebugError(std::wstring str);
+	void DebugError(std::wstring str, HRESULT hr);
+	void DebugErrorBox(std::wstring str);
+	void FunctionNotInstalled(std::string info);
+	void LogInfo(const char* log_format, ...);
 
 }
+
 std::string YOG_DLL_EXPORT PCharToString(const char* w);
 
-namespace YogString {
+namespace YogString{
 
-
-	 std::string ws2s(const std::wstring& ws);
-
-	 std::wstring s2ws(const std::string& s);
+	std::string GetDirectoryFromPath(const std::string& filename);
+	std::string ws2s(const std::wstring& ws);
+	std::string GetFileExtension(const std::string& filename);
+	std::wstring s2ws(const std::string& s);
 }
 
-namespace  YogHelper{
+namespace YogHelper{
 	void GetAssetsPath(_Out_writes_(pathSize) WCHAR* path, UINT pathSize);
-	 std::wstring YOG_DLL_EXPORT get_asset_path();
-	 std::wstring YOG_DLL_EXPORT get_asset_path(std::wstring input);
-	 void YOG_DLL_EXPORT SetMousePosition(Vec3 vec3);
+	std::wstring YOG_DLL_EXPORT get_asset_path();
+	std::wstring YOG_DLL_EXPORT get_asset_path(std::wstring input);
+	void YOG_DLL_EXPORT SetMousePosition(Vec3 vec3);
 }

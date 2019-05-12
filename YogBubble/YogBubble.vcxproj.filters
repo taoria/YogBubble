@@ -198,6 +198,24 @@
     <ClInclude Include="tools\Data\Input.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="mods\graphic\Mesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Resource\ModelResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Resource\ModelManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Scene\Scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Graphic\Color.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\Texture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -345,6 +363,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="tools\Data\Input.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\Mesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Resource\ModelResource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Resource\ModelManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Scene\Scene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Graphic\Color.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\Texture.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

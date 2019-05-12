@@ -23,8 +23,8 @@ void Environment::InitDebugController(){
 
 Environment::Environment(){
 
-	width = 1024;
-	height = 768;
+	width = 1440;
+	height = 900;
 
 }
 
@@ -226,11 +226,11 @@ void Environment::InitializeD3DEnv(HWND h_window){
 		LOG_F(YOG_ERROR, "Failed to load resources %s error code  %X", "test.png", hr);
 		return;
 	}
-	hr = CreateWICTextureFromFile(this->m_device.Get(), L"E:\\YogBuild\\grass.png", nullptr, this->demoTexture.GetAddressOf());
-	if (FAILED(hr)) {
-		LOG_F(YOG_ERROR, "Failed to load resources %s error code  %X", "grass.png", hr);
-		return;
-	}
+	// hr = CreateWICTextureFromFile(this->m_device.Get(), L"E:\\YogBuild\\grass.png", nullptr, this->demoTexture.GetAddressOf());
+	// if (FAILED(hr)) {
+	// 	LOG_F(YOG_ERROR, "Failed to load resources %s error code  %X", "grass.png", hr);
+	// 	return;
+	// }
 	vs_cb_data.Initialize(m_device.Get(), m_deviceContext.Get());
 	ps_cb_data.Initialize(m_device.Get(), m_deviceContext.Get());
 	camera.SetPosition(0, 0, -2);

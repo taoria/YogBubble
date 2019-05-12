@@ -23,7 +23,7 @@ UINT IndexBuffer::BufferSize() const{
 	return bufferSize;
 }
 
-HRESULT IndexBuffer::Initialize(ID3D11Device* device, DWORD* data, UINT numIndices){
+HRESULT IndexBuffer::Initialize(ID3D11Device* device,const UINT* data, UINT numIndices){
 
 	this->bufferSize = numIndices;
 	D3D11_BUFFER_DESC indexBufferDesc = {};
@@ -31,7 +31,7 @@ HRESULT IndexBuffer::Initialize(ID3D11Device* device, DWORD* data, UINT numIndic
 	indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	indexBufferDesc.CPUAccessFlags = 0;
 	indexBufferDesc.MiscFlags = 0;
-	indexBufferDesc.ByteWidth = sizeof(DWORD) * numIndices;
+	indexBufferDesc.ByteWidth = sizeof(UINT) * numIndices;
 
 	D3D11_SUBRESOURCE_DATA indexBufferData;
 	indexBufferData.pSysMem = data;

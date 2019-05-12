@@ -8,6 +8,8 @@
 #pragma comment(lib,"D3D12.lib")
 #pragma comment(lib,"dxgi.lib")
 #pragma comment(lib,"d3d11.lib")
+#ifdef WIN32
+#endif
 #include "targetver.h"
 #define WIN32_LEAN_AND_MEAN             // 从 Windows 头文件中排除极少使用的内容
 // Windows 头文件

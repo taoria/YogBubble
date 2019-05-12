@@ -23,8 +23,8 @@ protected:
 	static YogWindow* yog_app;
 	HINSTANCE _h_app_inst = nullptr; // application instance handle
 	HWND      _h_main_window = nullptr; // main window handle
-	int _i_client_width = 1024;
-	int _i_client_height = 768;
+	int _i_client_width = 1440;
+	int _i_client_height = 900;
 
 };
 

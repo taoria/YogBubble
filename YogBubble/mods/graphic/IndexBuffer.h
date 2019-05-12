@@ -16,6 +16,7 @@ public:
 	ID3D11Buffer* const* GetAddressOf() const;
 
 	UINT BufferSize() const;
+	HRESULT Initialize(ID3D11Device* device, const UINT* data, UINT numIndices);
 
-	HRESULT Initialize(ID3D11Device* device, DWORD* data, UINT numIndices);
+	//HRESULT Initialize(ID3D11Device* device, DWORD* data, UINT numIndices);
 };

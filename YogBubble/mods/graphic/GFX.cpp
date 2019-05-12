@@ -1,6 +1,7 @@
 #include "GFX.h"
 #include "../../tools/helper.h"
 #include "../../yogcore/Graphic/RendererData.h"
+#include "../../yogcore/Resource/ModelManager.h"
 
 GFX::GFX(YogWindow* yog_window) {
 	// env_ = new D3DEnv();
@@ -42,16 +43,11 @@ void GFX::OnModuleUpdateLogic(){
 	for(auto modelCm : *RendererData::GetInstance()){
 		if(modelCm->entity){
 			YogModel* aYogModel = new YogModel;
-			aYogModel->Initialize(env);
-			aYogModel->entity = modelCm->entity;
+			aYogModel->Initialize(env,dynamic_cast<ModelResource*>(ModelManager::GetInstance()->GetTargetFromName(modelCm->modelName)));
 			env->yogModels.push_back(aYogModel);
 		}
 	}
 	RendererData::GetInstance()->clear();
-	for (auto model : env->yogModels) {
-		if (model->entity)
-			model->UpdateFromTransform();
-	}
 
 }
 void GFX::OnModuleUpdate() {

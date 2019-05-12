@@ -54,11 +54,11 @@ void OnMouseMove(IEvent* arg) {
 	Input::MousePosition = GetWrappedInfo<Vec3>(arg, "data");
 }
 void OnMouseWheeling(IEvent* arg){
-	const auto wParam = GetWrappedInfo<WPARAM>(arg, "data");
-
-	const auto zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
-
-	Input::MouseDelta = static_cast<float>(zDelta) / 120.0f;
+	// const auto wParam = GetWrappedInfo<WPARAM>(arg, "data");
+	//
+	// const auto zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+	//
+	// Input::MouseDelta = static_cast<float>(zDelta) / 120.0f;
 
 }
 EventSystem::EventSystem(){
