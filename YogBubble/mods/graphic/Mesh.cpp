@@ -20,6 +20,17 @@ Mesh::Mesh(ID3D11Device* mesh, ID3D11DeviceContext* context, const std::vector<D
 }
 
 
+Mesh::Mesh(ID3D11Device* mesh, ID3D11DeviceContext* context, const std::vector<Dot>& dots,
+	const std::vector<unsigned>& is, const std::vector<Texture>& vector, const XMMATRIX& xmmatrix){
+	this->transformMatrix = xmmatrix;
+	Initialize(mesh, context, dots, is, vector);
+
+}
+
+const XMMATRIX& Mesh::GetTransformMatrix(){
+	return transformMatrix;
+}
+
 bool Mesh::Initialize(ID3D11Device* mDevice, ID3D11DeviceContext* mDeviceContext, const std::vector<Dot>& vector,
                       const std::vector<UINT>& indices, std::vector<Texture> textures){
 	m_deviceContext = mDeviceContext;
@@ -36,4 +47,5 @@ Mesh::Mesh(const Mesh& mesh){
 	indexBuffer = mesh.indexBuffer;
 	vertexBuffer = mesh.vertexBuffer;
 	textures = mesh.textures;
+	transformMatrix = mesh.transformMatrix;
 }

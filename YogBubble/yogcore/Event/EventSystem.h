@@ -10,7 +10,7 @@ protected:
 	static EventSystem* event_system;
 	std::map<std::string,EventTemplate*> event_type_pool;
 	YID id;
-	EventQueue* event_queue;
+	EventQueue* eventQueue;
 	void assign(IEvent *arg);
 public:
 	EventSystem();
@@ -23,10 +23,10 @@ public:
 	void RegisterEvent(std::string name, EventHandler eventHandle);
 	void RegisterEvent(std::string name , EventTemplate* register_event_template);
 
-	virtual EventQueue* get_event_queue();
+	virtual EventQueue* GetEventQueue();
 	virtual void HandlingEvent();
 	virtual void HandlingEventSingle();
-	virtual IEvent* create_event(std::string event_name);
+	virtual IEvent* CreateYogEvent(std::string event_name);
 	YID GetId() override;
 	void SetId(YID id) override;
 	std::string GetName() override;

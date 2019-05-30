@@ -80,7 +80,7 @@
     <LibraryPath>D:\Users\taoria\source\repos\YogBubble\YogBubbleResult;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\YogBuild\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\LuaBridge;E:\YogBuild\include;$(IncludePath)</IncludePath>
     <LibraryPath>E:\YogBuild;$(LibraryPath)</LibraryPath>
     <OutDir>E:\YogBuild\</OutDir>
     <TargetName>YogGame</TargetName>

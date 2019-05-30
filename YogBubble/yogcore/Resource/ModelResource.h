@@ -7,7 +7,7 @@ class YOG_DLL_EXPORT ModelResource :public IYog
 
 public:
 	std::string m_resourceAddress;
-	std::vector<Entity*> m_users;
+	std::vector<Entity**> m_users;
 	ModelResource();
 	~ModelResource();
 	YID GetId() override;

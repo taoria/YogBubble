@@ -82,7 +82,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>E:\YogBuild\</OutDir>
-    <IncludePath>D:\Program Files\Assimp\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\LuaBridge;D:\Users\taoria\source\repos\YogBubble\packages\jsoncpp-vc140-static-32_64.1.8.0\lib\native\libs\x64\static\Debug;D:\Program Files\Assimp\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Program Files\Assimp\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,7 +91,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\Program Files\Assimp\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Users\taoria\source\repos\YogBubble\packages\jsoncpp-vc140-static-32_64.1.8.0\lib\native\libs\x64\static\Debug;D:\Program Files\Assimp\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Program Files\Assimp\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -178,8 +178,30 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="lua\lua_reg.h" />
+    <ClInclude Include="mods\graphic\Sprite.h" />
+    <ClInclude Include="mods\physics\YogPhysics.h" />
+    <ClInclude Include="octree.h" />
+    <ClInclude Include="tools\thirdparty\json\assertions.h" />
+    <ClInclude Include="tools\thirdparty\json\autolink.h" />
+    <ClInclude Include="tools\thirdparty\json\config.h" />
+    <ClInclude Include="tools\thirdparty\json\features.h" />
+    <ClInclude Include="tools\thirdparty\json\forwards.h" />
+    <ClInclude Include="tools\thirdparty\json\json.h" />
+    <ClInclude Include="tools\thirdparty\json\reader.h" />
+    <ClInclude Include="tools\thirdparty\json\value.h" />
+    <ClInclude Include="tools\thirdparty\json\version.h" />
+    <ClInclude Include="tools\thirdparty\json\writer.h" />
+    <ClInclude Include="tools\thirdparty\json_tool.h" />
+    <ClInclude Include="yogcore\Entity\Light.h" />
+    <ClInclude Include="yogcore\Entity\UIEntity.h" />
+    <ClInclude Include="yogcore\Graphic\LightComponent.h" />
+    <ClInclude Include="yogcore\physics\Collider.h" />
+    <ClInclude Include="mods\graphic\physics.h" />
     <ClInclude Include="mods\graphic\Texture.h" />
     <ClInclude Include="yogcore\Graphic\Color.h" />
+    <ClInclude Include="yogcore\physics\Physics.h" />
+    <ClInclude Include="yogcore\physics\RigidBody.h" />
     <ClInclude Include="yogcore\Scene\Scene.h" />
     <ClInclude Include="yogcore\Resource\ModelManager.h" />
     <ClInclude Include="yogcore\Resource\ModelResource.h" />
@@ -238,6 +260,7 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
     <ClInclude Include="yogcore\Module\IModuleLoader.h" />
     <ClInclude Include="yogcore\Module\IYogModule.h" />
     <ClInclude Include="mods\graphic\GFX.h" />
+    <ClInclude Include="yogcore\UI\UIComponent.h" />
     <ClInclude Include="yogcore\yog.h" />
     <ClInclude Include="yogcore\YogDefine.h" />
     <ClInclude Include="yogcore\yogwindow.h" />
@@ -247,8 +270,21 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
     <ClInclude Include="yogcore\ystring.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="lua\lua_reg.cpp" />
+    <ClCompile Include="mods\graphic\Sprite.cpp" />
+    <ClCompile Include="mods\physics\YogPhysics.cpp" />
+    <ClCompile Include="octree.cpp" />
+    <ClCompile Include="tools\thirdparty\json_reader.cpp" />
+    <ClCompile Include="tools\thirdparty\json_value.cpp" />
+    <ClCompile Include="tools\thirdparty\json_writer.cpp" />
+    <ClCompile Include="yogcore\Entity\Light.cpp" />
+    <ClCompile Include="yogcore\Entity\UIEntity.cpp" />
+    <ClCompile Include="yogcore\Graphic\LightComponent.cpp" />
+    <ClCompile Include="yogcore\physics\Collider.cpp" />
     <ClCompile Include="mods\graphic\Texture.cpp" />
     <ClCompile Include="yogcore\Graphic\Color.cpp" />
+    <ClCompile Include="yogcore\physics\Physics.cpp" />
+    <ClCompile Include="yogcore\physics\RigidBody.cpp" />
     <ClCompile Include="yogcore\Scene\Scene.cpp" />
     <ClCompile Include="yogcore\Resource\ModelManager.cpp" />
     <ClCompile Include="yogcore\Resource\ModelResource.cpp" />
@@ -283,7 +319,6 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
     <ClCompile Include="yogcore\Event\InfoWrapper.cpp" />
     <ClCompile Include="mods\graphic\constantBuffer.cpp" />
     <ClCompile Include="mods\graphic\IndexBuffer.cpp" />
-    <ClCompile Include="mods\algorithm\sortcpp.cpp" />
     <ClCompile Include="mods\graphic\D3DCamera.cpp" />
     <ClCompile Include="yogcore\Config\ConfigManager.cpp" />
     <ClCompile Include="yogcore\Module\ModuleManager.cpp" />
@@ -308,6 +343,7 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="mods\graphic\GFX.cpp" />
+    <ClCompile Include="yogcore\UI\UIComponent.cpp" />
     <ClCompile Include="yogcore\yog.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -350,6 +386,8 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
     <Import Project="..\packages\directxtk_desktop_2015.2019.2.7.1\build\native\directxtk_desktop_2015.targets" Condition="Exists('..\packages\directxtk_desktop_2015.2019.2.7.1\build\native\directxtk_desktop_2015.targets')" />
     <Import Project="..\packages\gflags.2.0.1.0\build\native\gflags.targets" Condition="Exists('..\packages\gflags.2.0.1.0\build\native\gflags.targets')" />
     <Import Project="..\packages\glog.0.3.3.0\build\native\glog.targets" Condition="Exists('..\packages\glog.0.3.3.0\build\native\glog.targets')" />
+    <Import Project="..\packages\lua.redist.5.3.5\build\native\lua.redist.targets" Condition="Exists('..\packages\lua.redist.5.3.5\build\native\lua.redist.targets')" />
+    <Import Project="..\packages\lua.5.3.5\build\native\lua.targets" Condition="Exists('..\packages\lua.5.3.5\build\native\lua.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -360,5 +398,7 @@ xcopy  /S /y  $(OutputPath)*.pdb $(SolutionDir)$(Configuration)</Command>
     <Error Condition="!Exists('..\packages\gflags.2.0.1.0\build\native\gflags.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\gflags.2.0.1.0\build\native\gflags.targets'))" />
     <Error Condition="!Exists('..\packages\glog.0.3.3.0\build\native\glog.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glog.0.3.3.0\build\native\glog.props'))" />
     <Error Condition="!Exists('..\packages\glog.0.3.3.0\build\native\glog.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glog.0.3.3.0\build\native\glog.targets'))" />
+    <Error Condition="!Exists('..\packages\lua.redist.5.3.5\build\native\lua.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\lua.redist.5.3.5\build\native\lua.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\lua.5.3.5\build\native\lua.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\lua.5.3.5\build\native\lua.targets'))" />
   </Target>
 </Project>

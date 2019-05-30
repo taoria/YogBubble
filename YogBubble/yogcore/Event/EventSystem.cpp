@@ -61,6 +61,9 @@ void OnMouseWheeling(IEvent* arg){
 	// Input::MouseDelta = static_cast<float>(zDelta) / 120.0f;
 
 }
+void OnCollision(IEvent* arg){
+	
+}
 EventSystem::EventSystem(){
 	RegisterEvent("module init", OnModuleInitialized);
 	RegisterEvent("render", OnRender);
@@ -72,6 +75,7 @@ EventSystem::EventSystem(){
 	RegisterEvent("mouse right up", OnRightButtonUp);
 	RegisterEvent("mouse move", OnMouseMove);
 	RegisterEvent("mouse wheel", OnMouseWheeling);
+	RegisterEvent("on collision", OnCollision);
 }
 
 
@@ -87,35 +91,34 @@ EventSystem* EventSystem::get_instance() {
 }
 
 void EventSystem::EmitInfo(IEvent* args) {
-	if(this->get_event_queue()) {
-		this->get_event_queue()->push(args);
+	if(this->GetEventQueue()) {
+		this->GetEventQueue()->push(args);
 	}
 }
 void EventSystem::EmitInfo(std::string str) {
-	if(this->get_event_queue()) {
+	if(this->GetEventQueue()) {
 		EventTemplate * temp = dynamic_cast<EventTemplate*>(this->GetTargetFromName(str));
 		if(this->GetTargetFromName(str)==nullptr) {
 			ConsoleLogger::get_instance()->log_format(YOG_ERROR, "Event create failed :event template name %s ", str.c_str());
 		}else {
-			IEvent* new_event = create_event(str);
-			this->EmitInfo(new_event);
+			IEvent* newEvent = CreateYogEvent(str);
+			this->EmitInfo(newEvent);
 		}
 	}
 }
 
 void EventSystem::EmitInfo(std::string str,std::string key,IYog* info){
-	if (this->get_event_queue()) {
+	if (this->GetEventQueue()) {
 		EventTemplate * temp = dynamic_cast<EventTemplate*>(this->GetTargetFromName(str));
 		if (this->GetTargetFromName(str) == nullptr) {
 			ConsoleLogger::get_instance()->log_format(YOG_ERROR, "Event create failed :event template name %s ", str.c_str());
 		}
 		else {
-			IEvent* new_event = create_event(str);
+			IEvent* new_event = CreateYogEvent(str);
 			new_event->push(key, info);
 			this->EmitInfo(new_event);
 		}
 	}
-
 }
 
 void EventSystem::RegisterEvent(std::string name ,EventTemplate* registerEventTemplate) {
@@ -140,11 +143,11 @@ void EventSystem::RegisterEvent(std::string name,EventHandler eventHandle) {
 	}
 }
 
-EventQueue* EventSystem::get_event_queue() {
-	if(this->event_queue==nullptr) {
-		return event_queue = new EventQueue();
+EventQueue* EventSystem::GetEventQueue() {
+	if(this->eventQueue==nullptr) {
+		return eventQueue = new EventQueue();
 	}
-	return event_queue;
+	return eventQueue;
 }
 
 void EventSystem::HandlingEvent() {
@@ -153,9 +156,9 @@ void EventSystem::HandlingEvent() {
 	while(true) {
 		Data::TimerData::deltaTimeEvent = static_cast<float>(timer.GetMilisecondsElapsed());
 		timer.Restart();
-		while (get_event_queue()->size()>0) {
+		while (GetEventQueue()->size()>0) {
 		//	ConsoleLogger::get_instance()->log( "An event is hooked", YOG_INFO);
-			IEvent* event = this->get_event_queue()->front();
+			IEvent* event = this->GetEventQueue()->front();
 			EventTemplate *event_template = static_cast<EventTemplate*>(this->GetTargetFromName(event->GetName()));
 			if (event_template->m_eventHandlerList.size()==0) {
 				
@@ -166,34 +169,34 @@ void EventSystem::HandlingEvent() {
 					v(event);
 				}
 			}
-			get_event_queue()->pop();
+			GetEventQueue()->pop();
 		}
-		while (get_event_queue()->size() == 0);
+		while (GetEventQueue()->size() == 0);
 	}
 
 }
 
 void EventSystem::HandlingEventSingle(){
-	while (get_event_queue()->size() > 0) {
+	while (GetEventQueue()->size() > 0) {
 	//	ConsoleLogger::get_instance()->log("An event is hooked", YOG_INFO);
-		IEvent* yevent = this->get_event_queue()->front();
-		EventTemplate *event_template = static_cast<EventTemplate*>(this->GetTargetFromName(yevent->GetName()));
-		if (event_template->m_eventHandlerList.size() == 0) {
+		IEvent* yevent = this->GetEventQueue()->front();
+		EventTemplate *eventTemplate = static_cast<EventTemplate*>(this->GetTargetFromName(yevent->GetName()));
+		if (eventTemplate->m_eventHandlerList.size() == 0) {
 			ConsoleLogger::get_instance()->log_format(YOG_ERROR, "Event create failed :event template name %s", GetName().c_str());
 			continue;
 		}
 		else {
-			for (EventHandler v : event_template->m_eventHandlerList) {
+			for (EventHandler v : eventTemplate->m_eventHandlerList) {
 				v(yevent);
 			}
 		}
 		
 		delete yevent;
-		get_event_queue()->pop();
+		GetEventQueue()->pop();
 	}
 }
 
-IEvent* EventSystem::create_event(std::string event_name) {
+IEvent* EventSystem::CreateYogEvent(std::string event_name) {
 	auto temp = new YEvent;
 	temp->SetName(event_name);
 	return dynamic_cast<IEvent*>(temp);

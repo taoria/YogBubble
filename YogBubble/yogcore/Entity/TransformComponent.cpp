@@ -28,13 +28,12 @@ TransformComponent::TransformComponent(){
 	scale.z = 1;
 }
 
-void TransformComponent::LookAtPos(Vec3 pos){
-	Vec3 lookAtPos = position+GetForward();
-	if (lookAtPos.x == pos.x && lookAtPos.y == pos.y&& lookAtPos.z == pos.z)
+void TransformComponent::LookAtPos(Vec3 lookAtPos){
+	if (lookAtPos.x == position.x && lookAtPos.y == position.y&& lookAtPos.z == position.z)
 		return;
-	lookAtPos.x = pos.x - lookAtPos.x;
-	lookAtPos.y = pos.y - lookAtPos.y;
-	lookAtPos.z = pos.z - lookAtPos.z;
+	lookAtPos.x = position.x- lookAtPos.x ;
+	lookAtPos.y = position.y - lookAtPos.y;
+	lookAtPos.z = position.z - lookAtPos.z;
 	float pitch = 0.0f;
 	if (lookAtPos.y != 0.0f) {
 		const float dis = sqrt(lookAtPos.x*lookAtPos.x + lookAtPos.z*lookAtPos.z);
@@ -48,6 +47,5 @@ void TransformComponent::LookAtPos(Vec3 pos){
 		yaw += XM_PI;
 	rotation.x = pitch;
 	rotation.y = yaw;
-	rotation.z = 0;
 }
 

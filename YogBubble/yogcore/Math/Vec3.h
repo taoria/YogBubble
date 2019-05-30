@@ -28,6 +28,7 @@ public:
 	operator XMFLOAT3();
 	operator XMVECTOR();
 	float Magnitude() const;
+	std::string ToString();
 };
 
 

@@ -3,6 +3,7 @@
 #include "ModuleManager.h"
 #include "../YogWindow.h"
 #include "../../mods/graphic/GFX.h"
+#include "../../mods/physics/YogPhysics.h"
 
 
 YogModuleLoader::YogModuleLoader()
@@ -20,6 +21,7 @@ IYogModule* YogModuleLoader::load_mod(std::string loading_info) {
 	IYogModule* yog_window = YogWindow::get_instance();
 	module_manager->RegisterTargetByName("yog window",yog_window);
 	module_manager->RegisterTargetByName("renderer",new GFX(static_cast<YogWindow*>(yog_window)));
+	module_manager->RegisterTargetByName("physics", new YogPhysics);
 	return nullptr;
 }
 

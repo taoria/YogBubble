@@ -153,6 +153,10 @@ void D3DCamera::UpdateFromEntity(){
 	UpdateViewMatrix();
 }
 
+void D3DCamera::DrawGrid(){
+
+}
+
 void D3DCamera::Initialize(Entity* cameraEntity){
 	this->cameraEntity = cameraEntity;
 	initialized = true;

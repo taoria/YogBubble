@@ -19,6 +19,7 @@ public:
 	IYog* GetTargetFromName(std::string name) override;
 	IYog* GetTargetFromName(std::wstring name) override;
 	void AddReference(ModelComponent* modelComponent,std::string modelName);
+	void RemoveReference(ModelComponent* modelComponent, std::string modelName);
 	bool RegisterModel(std::string file, std::string filepath);
 
 	IYog* GetTargetFromId(UINT id) override;

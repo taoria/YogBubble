@@ -7,6 +7,5 @@ class EventQueue:public std::queue<IEvent*>
 public:
 	EventQueue();
 	~EventQueue();
-	
 };
 

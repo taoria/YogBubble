@@ -18,6 +18,10 @@ void IComponent::SetId(YID id){
 
 void IComponent::OnUpdate(){}
 
+COMPONENT_MARK IComponent::GetComponentMark(){
+	return COMPONENT_NORMAL;
+}
+
 std::string IComponent::GetName(){
 	return "IComponent";
 }

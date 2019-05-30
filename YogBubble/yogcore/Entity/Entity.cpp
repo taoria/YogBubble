@@ -29,6 +29,10 @@ void Entity::OnRelease(){
 	
 }
 
+std::string Entity::GameName(){
+	return "default object";
+}
+
 IComponent* Entity::GetComponent(std::string name){
 	ComponentSystem* cs = dynamic_cast<ComponentSystem*>(get_manager("component system"));
 	return cs->GetComponentOfEntity(this, name);
@@ -37,6 +41,15 @@ IComponent* Entity::GetComponent(std::string name){
 void Entity::AddComponent(IComponent* component){
 	ComponentSystem* cs = dynamic_cast<ComponentSystem*>(get_manager("component system"));
 	cs->RegisterTargetOfEntity(this, component);
+}
+
+Entity::~Entity(){
+	ComponentSystem* cs = dynamic_cast<ComponentSystem*>(get_manager("component system"));
+	auto vecs = cs->GetComponentList(this);
+	cs->GCForEntity(this);
+	for(auto mem:vecs){
+		delete mem;
+	}
 }
 
 Entity::Entity(){

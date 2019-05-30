@@ -41,7 +41,7 @@ public:
 	void OnInit() override;
 	void OnRelease() override;
 	void UpdateFromEntity();
-	
+	void DrawGrid();
 	void Initialize(Entity *cameraEntity);
 private:
 	Entity *cameraEntity;

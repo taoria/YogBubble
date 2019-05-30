@@ -9,7 +9,7 @@ class IDAssigner
 {
 protected:
 	static IDAssigner * globalIdAssigner;
-	UINT64 currentId;
+	UINT64 currentId = 0;
 
 public:
 	static IDAssigner* GetInstance();

@@ -7,6 +7,7 @@
 #include "../yogcore/Math/Vec3.h"
 #include "../yogcore/yogwindow.h"
 #include <algorithm>
+#include <fstream>
 #pragma comment(lib, "comsuppw.lib")
 
 using Microsoft::WRL::ComPtr;
@@ -56,12 +57,12 @@ std::string YogString::GetDirectoryFromPath(const std::string& filename){
 		return "";
 	}
 	if(off1==std::string::npos){
-		return filename.substr(0, off2 - 1);
+		return filename.substr(0, off2 );
 	}
 	if(off2==std::string::npos){
-		return filename.substr(0, off1 - 1);
+		return filename.substr(0, off1);
 	}
-	return filename.substr(0, std::max(off1, off2) -1);
+	return filename.substr(0, std::max(off1, off2) );
 }
 
 namespace YogString {
@@ -120,7 +121,18 @@ namespace  YogHelper {
 		std::wstring res = assetsPath;
 		return res;
 	}
-	std::wstring get_asset_path(std::wstring input) {
+
+	 bool CheckFile(std::string filename){
+		 std::ifstream f;
+		 f.open(filename,std::ios::in);
+		 if(f){
+			 return true;
+		 }else{
+			 return false;
+		 }
+	 }
+
+	 std::wstring get_asset_path(std::wstring input) {
 		return get_asset_path() + input;
 	}
 	void SetMousePosition(Vec3 vec3){

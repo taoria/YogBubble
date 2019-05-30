@@ -10,7 +10,7 @@ IDAssigner* IDAssigner::GetInstance(){
 UINT64 IDAssigner::AssignId(IDType idType){
 	switch (idType){
 	case ID_ENTITY:{
-		return this->currentId++;
+		return (this->currentId)++;
 		break;
 	}
 	case ID_COMPONENT:{

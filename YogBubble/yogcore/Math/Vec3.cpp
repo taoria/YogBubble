@@ -110,6 +110,12 @@ float Vec3::Magnitude() const{
 	return sqrt((x*x + y * y + z * z));
 }
 
+std::string Vec3::ToString(){
+	char buff[64];
+	sprintf(buff, "[%f,%f,%f]", x, y, z);
+	return buff;
+}
+
 
 Vec3::Vec3()
 {

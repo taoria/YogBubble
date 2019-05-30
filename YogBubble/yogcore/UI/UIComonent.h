@@ -1,7 +1,6 @@
 ﻿#pragma once
 
-class IDrawComponent
-{
+class UIComponent{
 public:
 	
 };

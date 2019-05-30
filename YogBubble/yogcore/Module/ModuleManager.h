@@ -5,7 +5,7 @@
 class ModuleManager :public IYogManager{
 protected:
 	std::string m_manager_name;
-	std::map<std::string, IYogModule*> mod_pool;
+	std::map<std::string, IYogModule*> m_modPool;
 public:
 	ModuleManager();
 	void InitModule();

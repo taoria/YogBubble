@@ -5,6 +5,10 @@ void IDrawComponent::OnDraw(){
 	
 }
 
+COMPONENT_MARK IDrawComponent::GetComponentMark(){
+	return COMPONENT_RENDER;
+}
+
 Vec3& IDrawComponent::GetTransformPosition(){
 	return GetEntity()->GetComponent<TransformComponent>()->position;
 }

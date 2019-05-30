@@ -29,11 +29,13 @@ namespace YogString{
 	std::string ws2s(const std::wstring& ws);
 	std::string GetFileExtension(const std::string& filename);
 	std::wstring s2ws(const std::string& s);
+	
 }
 
 namespace YogHelper{
 	void GetAssetsPath(_Out_writes_(pathSize) WCHAR* path, UINT pathSize);
 	std::wstring YOG_DLL_EXPORT get_asset_path();
+	bool CheckFile(std::string filename);
 	std::wstring YOG_DLL_EXPORT get_asset_path(std::wstring input);
 	void YOG_DLL_EXPORT SetMousePosition(Vec3 vec3);
 }

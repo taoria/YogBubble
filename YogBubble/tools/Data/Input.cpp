@@ -30,6 +30,9 @@ KeyCode KeyCode::LEFT = 37;
 KeyCode KeyCode::UP = 38;
 KeyCode KeyCode::RIGHT = 39;
 KeyCode KeyCode::DOWN = 40;
+KeyCode KeyCode::CTRL = 17;
+KeyCode KeyCode::LSHIFT = VK_SHIFT;
+
 std::map<KeyCode, bool> Input::keyCodeState;
 float Input::MouseDelta = 0.0;
 Vec3 Input::MousePosition = {0, 0, 0};

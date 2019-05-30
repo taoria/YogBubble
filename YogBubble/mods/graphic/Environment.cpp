@@ -8,7 +8,10 @@
 #include "../ui/imgui.h"
 #include "../ui/imgui_impl_win32.h"
 #include "../ui/imgui_impl_dx11.h"
-
+#include "../../yogcore/Component/ComponentSystem.h"
+#include "../../yogcore/Graphic/RendererData.h"
+#include "../../yogcore/Graphic/LightComponent.h"
+#include "../../yogcore/Entity/TransformComponent.h"
 void ThrowIfFailed(HRESULT create_dxgi_factory){
 	if (FAILED(create_dxgi_factory)){
 		throw new std::exception;
@@ -502,7 +505,7 @@ void Environment::env_start(){
 	m_swap_chain_->Present(1, 0);
 
 #endif
-	const float clearColor[] = { 0.2f, 0.2f, 0.4f, 1.0f };
+	const float clearColor[] = { 0, 0, 0, 1.0f };
 	//this->m_deviceContext->OMSetRenderTargets(1, this->m_renderTargetView.GetAddressOf(), nullptr);
 	this->m_deviceContext->ClearRenderTargetView(m_renderTargetView.Get(), clearColor);
 	this->m_deviceContext->ClearDepthStencilView(m_depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
@@ -519,25 +522,33 @@ void Environment::env_start(){
 	for(auto model : yogModels){
 		model->Draw(camera.GetViewMatrix()*camera.GetProjectionMatrix());
 	}
-	static float alpha =0.5f;
-	this->ps_cb_data.data.alpha = alpha;
-
+	if(RendererData::GetDefaultLight()!=nullptr){
+		auto com = RendererData::GetDefaultLight()->GetComponent<LightComponent>();
+		auto tcom = RendererData::GetDefaultLight()->GetComponent<TransformComponent>();
+		ps_cb_data.data.dynamicColor = com->lightColor;
+		ps_cb_data.data.dynamicLightStrength = com->lightStrength;
+		ps_cb_data.data.dynamicPosition = tcom->position;
+	}
 
 	ps_cb_data.ApplyChanges(m_deviceContext.Get());
 	this->m_deviceContext->PSSetConstantBuffers(0, 1, ps_cb_data.GetAddressOf());
 	spriteBatch->Begin();
 	spriteFont->DrawString(spriteBatch.get(), L"Yog Engine Version 0.1", XMFLOAT2(0, 0), DirectX::Colors::Aqua, 0.0f);
 	spriteBatch->End();
-
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
-	ImGui::Begin("Test");
-		ImGui::Text("this is example text");
-		ImGui::DragFloat("Alpha", &alpha,0.1f,0,1);
-	ImGui::End();
+	ComponentSystem* cs = dynamic_cast<ComponentSystem*>(get_manager("component system"));
+	cs->CallForDraw();
+	// ImGui::Begin("Color");
+	// ImGui::DragFloat3("light color", &ps_cb_data.data.color.x, 0.01, 0, 1);
+	// ImGui::DragFloat("light strength", &ps_cb_data.data.lightStrength, 0.01, 0, 1);
+	// ImGui::End();
 	ImGui::Render();
-	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	const auto renderRes = ImGui::GetDrawData();
+	if(renderRes){
+		ImGui_ImplDX11_RenderDrawData(renderRes);
+	}
 	this->m_swapChain->Present(1, NULL);
 
 

@@ -216,6 +216,75 @@
     <ClInclude Include="mods\graphic\Texture.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="mods\graphic\physics.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\physics\Collider.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\autolink.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\features.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\forwards.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\json.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\reader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\value.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\version.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\writer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json\assertions.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tools\thirdparty\json_tool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\UI\UIComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Entity\UIEntity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="octree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\lua_reg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\physics\Physics.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\physics\YogPhysics.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Graphic\LightComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\Entity\Light.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mods\graphic\Sprite.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="yogcore\physics\RigidBody.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -267,9 +336,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="yogcore\Config\ConfigManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="mods\algorithm\sortcpp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="mods\graphic\YogShader.cpp">
@@ -381,6 +447,48 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="mods\graphic\Texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\physics\Collider.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\thirdparty\json_reader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\thirdparty\json_value.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\thirdparty\json_writer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\UI\UIComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Entity\UIEntity.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="octree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\lua_reg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\physics\Physics.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\physics\YogPhysics.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Graphic\LightComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\Entity\Light.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mods\graphic\Sprite.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="yogcore\physics\RigidBody.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

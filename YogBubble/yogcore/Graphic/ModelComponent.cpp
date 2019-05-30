@@ -1,12 +1,23 @@
 ﻿#include "ModelComponent.h"
 #include "RendererData.h"
-
+#include "../yog.h"
+#include "../Resource/ModelManager.h"
+#include "../Event/EventSystem.h"
 void ModelComponent::OnInit(){
 	RendererData::GetInstance()->push_back(this);
-	//一旦存在一个ModelComponent,便要在对应的模型渲染程序中添加一个渲染目标
-	
+	EMIT_M("model construct", "data", new InfoWrapper<YID>(this->GetEntity()->GetId()));
+	if(entity)
+		EMIT_M("model construct", "entity", entity);
+}
+
+ModelComponent::~ModelComponent(){
+	EMIT_M("model deconstruct", "data", new InfoWrapper<YID>(this->GetEntity()->GetId()));
+	ModelManager::GetInstance()->RemoveReference(this, modelName);
 }
 
 std::string ModelComponent::GetName(){
 	return "ModelComponent";
+}
+
+void ModelComponent::OnDraw(){
 }

@@ -6,6 +6,8 @@
 class YOG_DLL_EXPORT KeyCode{
 public:
 	UINT keyCodeCode;
+	static KeyCode CTRL;
+	static KeyCode LSHIFT;
 	bool operator ==(KeyCode& keyCode);
 	bool operator <(KeyCode& keyCode);
 	bool operator <(KeyCode keyCode);

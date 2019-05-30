@@ -16,7 +16,8 @@ private:
 	ID3D11DeviceContext* m_context;
 	//ID3D11ShaderResourceView* m_texture;
 	XMMATRIX worldMatrix =XMMatrixIdentity();
-	ConstantBuffer<VS_CB_DATA>* m_cbData;;
+	ConstantBuffer<VS_CB_DATA>* m_cbData;
+	std::string directory = "";
 	std::vector<Mesh> meshes;
 
 public:
@@ -26,14 +27,18 @@ public:
 	YogModel();
 	~YogModel();
 	ModelResource* resource;
-	void ProcessNode(aiNode* const aiNode, const aiScene* pScene);
+
+	Mesh ProcessMesh(const aiMesh* mesh, const aiScene* scene, const XMMATRIX& transformMatrix);
+	void ProcessNode(aiNode* const aiNode, const aiScene* pScene, const XMMATRIX& parentTransformMatrix);
 	bool LoadModel(const std::string& cs);
+	bool InitSpirte(const std::string& cs);
 	bool Initialize(const std::string& filepath, ID3D11Device* device, ID3D11DeviceContext* context, ConstantBuffer<VS_CB_DATA> &cb_vs_data);
 	TextureStorageType DetermineTextureStorageType(const aiScene* aiScene, aiMaterial* pMaterial, UINT uint, aiTextureType aiTexture);
+	int GetTextureIndex(aiString* path);
 	std::vector<Texture> LoadMaterialTextures(aiMaterial* pMaterial, aiTextureType textureType, const aiScene* aiScene);
 	bool Initialize(Environment* environment,ModelResource* modelResource);
 	//void SetTexture(ID3D11ShaderResourceView *m_texture);
-	Mesh ProcessMesh(const aiMesh* mesh, const aiScene* scene);
+	
 
 	void Draw(const XMMATRIX& viewProjectionMatrix);
 	XMVECTOR posVector;

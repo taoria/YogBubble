@@ -16,7 +16,7 @@ public:
 	void SetName(std::string) override;
 	void OnInit() override;
 	void OnRelease() override;
-
+	std::string GameName();
 
 	IComponent* GetComponent(std::string name);
 	template<typename T>
@@ -25,6 +25,7 @@ public:
 	void AddComponent(IComponent *component);
 	template<typename T>
 	void AddComponent();
+	~Entity();
 	Entity();
 	Vec3& GetPosition();
 	Vec3& GetRotation();
@@ -37,6 +38,7 @@ T* Entity::GetComponent(){
 	T* res = reinterpret_cast<T*>(GetComponent(str));
 	if(res==nullptr){
 		LOG_F(YOG_ERROR, "no such Component %s in Entity %d", str.c_str(), this->GetId());
+		return nullptr;
 	}
 	return res;
 }
@@ -46,5 +48,6 @@ void Entity::AddComponent(){
 	T* res = new T;
 	AddComponent(res);
 }
+
 
 

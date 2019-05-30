@@ -6,12 +6,15 @@ interface YOG_DLL_EXPORT IYogManager : IYogObject{
 	virtual bool RegisterTargetByName(std::string name, IYog* target)=0;
 	virtual bool RegisterTargetById(UINT yog_id, IYog* target)=0;
 	virtual IYog* GetTargetFromId(UINT id)=0;
-
+	virtual int GetPriority();
 	void OnInit() override;
 	void OnRelease() override;
 };
 
 
+inline int IYogManager::GetPriority(){
+	return 0;
+}
 
 inline void IYogManager::OnInit() {
 	

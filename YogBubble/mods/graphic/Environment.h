@@ -20,8 +20,9 @@ public:
 	YogVertexShader* m_yogVertexShader;
 	YogPixelShader* m_yogPixelShader;
 	std::vector<YogModel*> yogModels;
+
 	ConstantBuffer<VS_CB_DATA> vs_cb_data;
-	ConstantBuffer<PS_CB_DATA> ps_cb_data;
+	ConstantBuffer<PS_CB_LIGHT> ps_cb_data;
 	ComPtr<ID3D11RasterizerState> m_rasterizerState;
 	std::unique_ptr<SpriteBatch> spriteBatch;
 	std::unique_ptr<SpriteFont> spriteFont;

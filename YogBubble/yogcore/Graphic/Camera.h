@@ -12,6 +12,7 @@ public:
 	Camera();
 	void CameraAttatchedToGraphicCamera(D3DCamera* yogCamera);
 	void SetMainCamera();
+	bool ShowGrid;
 	~Camera();
 	//void SetPosition(const Vector3 & pos);
 	// void AdjustPosition(const Vector3 &pos);

@@ -35,11 +35,11 @@ void YogManager::OnInit() {
 	IYogManager *module_manager = new ModuleManager;
 	IYogManager *event_system = EventSystem::get_instance();
 	RegisterTargetByName("top manager", this);
-	RegisterTargetByName("module manager", module_manager);
 	RegisterTargetByName("event system", event_system);
 	IYogManager* component_system = new ComponentSystem;
 	RegisterTargetByName("component system",component_system);
 	RegisterTargetByName("config manager", new ConfigManager);
+	RegisterTargetByName("module manager", module_manager);
 }
 
 void YogManager::OnRelease() {

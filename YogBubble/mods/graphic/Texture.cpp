@@ -5,7 +5,7 @@ Texture::Texture(ID3D11Device* device, const Color& color, aiTextureType type){
 	Initialize1X1ColorTexture(device, color, type);
 }
 
-Texture::Texture(ID3D11Device* device, const std::string& filePath, UINT width, UINT height, aiTextureType type){
+Texture::Texture(ID3D11Device* device, const std::string& filePath, aiTextureType type){
 	this->type = type;
 	if(YogString::GetFileExtension(filePath)==".dds"){
 		HRESULT hr = DirectX::CreateDDSTextureFromFile(device, YogString::s2ws(filePath).c_str(), texture.GetAddressOf(), textureView.GetAddressOf());
@@ -16,7 +16,7 @@ Texture::Texture(ID3D11Device* device, const std::string& filePath, UINT width, 
 		}
 	}else{
 
-		HRESULT hr = DirectX::CreateDDSTextureFromFile(device, YogString::s2ws(filePath).c_str(), texture.GetAddressOf(), textureView.GetAddressOf());
+		HRESULT hr = DirectX::CreateWICTextureFromFile(device, YogString::s2ws(filePath).c_str(), texture.GetAddressOf(), textureView.GetAddressOf());
 		//TO DO LOG HERE
 		if (FAILED(hr)) {
 			this->Initialize1X1ColorTexture(device, Color::UnloaededTextureColor, type);
@@ -24,6 +24,13 @@ Texture::Texture(ID3D11Device* device, const std::string& filePath, UINT width, 
 		}
 		return;
 	}
+}
+
+Texture::Texture(ID3D11Device* device, const uint8_t* pData, size_t size, aiTextureType type){
+	this->type = type;
+	HRESULT hr = CreateWICTextureFromMemory(device, pData, size, this->texture.GetAddressOf(), this->GetTextureResourceViewAddress());
+	//TO DO LOG HERE
+
 }
 
 aiTextureType Texture::GetType(){
